@@ -1,0 +1,201 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Home Page</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Action
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a href="/addproject" class="dropdown-item">Adding Project</a>
+          <a href="/userdisplay" class="dropdown-item">Edit User</a>
+          <div class="dropdown-divider"></div>
+          <a href="/users/logout" class="dropdown-item">Logout</a>
+
+        </div>
+      </li>
+      
+    </ul>
+    <form action="search/keyword" method="GET"class="form-inline my-2 my-lg-0">
+      <label for="keyword"></label>
+      <input name="keyword" class="form-control mr-sm-2" id="keyword" type="text" placeholder="Search" aria-label="Search">
+      <input  class="btn btn-outline-success my-2 my-sm-0" type="submit"> </input>
+    </form>
+  </div>
+</nav>
+
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Add Project
+        </h1>
+        <% include ./partials/messages %>
+        <form action="/addproject" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Enter Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Student ID">Student ID</label>
+            <input
+              type="studentid"
+              id="studentid"
+              name="studentid"
+              class="form-control"
+              placeholder="Enter Student ID"
+              value="<%= typeof studentid != 'undefined' ? studentid : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="studentyear">Student year</label>
+            <input
+              type="studentyear"
+              id="studentyear"
+              name="studentyear"
+              class="form-control"
+              placeholder="Enter your student year"
+              value="<%= typeof studentyear != 'undefined' ? studentyear : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="course">Course</label>
+            <input
+              type="course"
+              id="course"
+              name="course"
+              class="form-control"
+              placeholder="Enter your Course"
+              value="<%= typeof course != 'undefined' ? course : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="courseid">Course ID</label>
+            <input
+              type="courseid"
+              id="courseid"
+              name="courseid"
+              class="form-control"
+              placeholder="Enter Course ID"
+              value="<%= typeof courseid != 'undefined' ? courseid : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="semester">Semester</label>
+            <input
+              type="semester"
+              id="semester"
+              name="semester"
+              class="form-control"
+              placeholder="Enter Semester"
+              value="<%= typeof semester != 'undefined' ? semester : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="assignment">Assignment</label>
+            <input
+              type="assignment"
+              id="assignment"
+              name="assignment"
+              class="form-control"
+              placeholder="Enter Your Assignment"
+              value="<%= typeof assignment != 'undefined' ? assignment : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              type="description"
+              id="description"
+              name="description"
+              class="form-control"
+              placeholder="Your Description about it"
+              value="<%= typeof description != 'undefined' ? description : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="percentage">Percentage </label>
+            <input
+              type="percentage"
+              id="percentage"
+              name="percentage"
+              class="form-control"
+              placeholder="Enter Your Percentage"
+              value="<%= typeof percentage != 'undefined' ? percentage : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="technologyuse">Technology Use </label>
+            <input
+              type="technologyuse"
+              id="technologyuse"
+              name="technologyuse"
+              class="form-control"
+              placeholder="Enter Your Technology Use"
+              value="<%= typeof technologyuse != 'undefined' ? technologyuse : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="scope">Scope</label>
+            <input
+              type="scope"
+              id="scope"
+              name="scope"
+              class="form-control"
+              placeholder="Enter Scope"
+              value="<%= typeof scope != 'undefined' ? scope : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input
+              type="company"
+              id="company"
+              name="company"
+              class="form-control"
+              placeholder="Enter Company"
+              value="<%= typeof company != 'undefined' ? company : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="application">Application</label>
+            <input
+              type="application"
+              id="application"
+              name="application"
+              class="form-control"
+              placeholder="Enter Application"
+              value="<%= typeof application != 'undefined' ? application : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="photo">Photo</label>
+            <input
+              type="phot"
+              id="photo"
+              name="photo"
+              class="form-control"
+              placeholder="Leave Assignment's Photo here"
+              value="<%= typeof photo != 'undefined' ? photo : '' %>"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Submit Project
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,55 @@
+.title{
+    background-color: #a3f7bf;
+    border-radius: 1rem;
+}
+
+.title-2{
+    background-color: #fff3af;
+    border-radius: 1rem;
+}
+
+.title-p1{
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.title-p2{
+    padding-top: 1rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.big-title{
+    padding-top: 1rem;
+    padding-left: 2rem;
+}
+
+.snip{
+    padding-top: 1rem;
+}
+
+.p2{
+    padding-top: 0.5rem;
+}
+
+.pw{
+    padding-left: 20rem;
+    padding-bottom: 1rem;
+}
+
+.title-3{
+    background-color: #d4d7dd;
+    border-radius: 1rem;
+}
+
+.button{
+    border-radius: 1rem;
+    background-color: #fff3af;
+}
+
+.button:hover{
+    background-color: #a3f7bf;
+}
