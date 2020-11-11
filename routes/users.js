@@ -106,7 +106,7 @@ router.post('/login', (req, res, next) => {
       successRedirect: '/dashboard',
       failureRedirect: '/users/login',
       failureFlash: true})
-  return next();
+      (req, res, next);
 }
 
 // router.post('/login', (req, res, next) => {
