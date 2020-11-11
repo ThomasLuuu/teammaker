@@ -5,9 +5,10 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
+const { checktype } = require('../config/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+router.get('/login',forwardAuthenticated, (req, res)=>res.render('login'));
 
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
@@ -17,7 +18,6 @@ router.get('/demoregister',(req,res) => {
 router.post('/register', (req, res) => {
   const { name, password, password2 } = req.body;
   const email = req.body.email;
-  let samplemain = "@rmit";
   let errors = [];
 
   if (!name || !email || !password || !password2) {
@@ -88,13 +88,39 @@ router.post('/register', (req, res) => {
 
 // Login
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next);
-});
+  const email = req.body.email
+  var check = email;
+  console.log(email);
+  if(check != "new@rmit"){
+    console.log("else");
+    passport.authenticate('local', {
+      successRedirect: '/dashboard',
+      failureRedirect: '/users/login',
+      failureFlash: true})
+  (req, res, next);
+}
 
+  if(check = "new@rmit"){
+    console.log(req.body.email);
+    passport.authenticate('local', {
+      successRedirect: '/dashboard',
+      failureRedirect: '/users/login',
+      failureFlash: true})
+  return next();
+}
+
+// router.post('/login', (req, res, next) => {
+//   const email = req.body.email
+//   console.log(email);
+//   if(req.body.email = "new@rmit"){
+//     console.log(req.body.email);
+  // passport.authenticate('local', {
+  //   successRedirect: '/dashboard',
+  //   failureRedirect: '/users/login',
+  //   failureFlash: true
+//   })(req, res, next);
+// }
+});
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();
@@ -103,3 +129,4 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
+  

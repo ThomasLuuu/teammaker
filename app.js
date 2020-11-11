@@ -61,7 +61,7 @@ app.use(function(req, res, next) {
 // Routes
 app.use('/users', require('./routes/users.js'));
 app.use('/', require('./routes/index.js'));
-const PORT = process.env.PRT || 5000;
+const PORT = process.env.PRT ||  5000;
 
 
 
