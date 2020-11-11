@@ -26,6 +26,17 @@ router.get('/dashboard', ensureAuthenticated,(req, res)=>{
         });
       });
 });
+
+//Dashboard for admin
+
+router.get('/dashboardadmin', ensureAuthenticated,(req, res)=>{
+  User.find({course: {$exists: true}}, function(err, data){
+    res.render('dashboardadmin.ejs',{
+      user  :req.user,
+      users  : data
+    });
+  });
+});
 //control user
 router.get('/userdisplay', ensureAuthenticated,(req, res)=>{
   User.find({course: {$exists: false}}, function(err, data){

@@ -90,9 +90,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   const email = req.body.email
   var check = email;
-  console.log(email);
   if(check != "new@rmit"){
-    console.log("else");
     passport.authenticate('local', {
       successRedirect: '/dashboard',
       failureRedirect: '/users/login',
@@ -101,9 +99,8 @@ router.post('/login', (req, res, next) => {
 }
 
   if(check = "new@rmit"){
-    console.log(req.body.email);
     passport.authenticate('local', {
-      successRedirect: '/dashboard',
+      successRedirect: '/dashboardadmin',
       failureRedirect: '/users/login',
       failureFlash: true})
       (req, res, next);
