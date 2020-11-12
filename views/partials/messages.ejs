@@ -1,11 +1,30 @@
-<% if(typeof errors != 'undefined'){ %> <% errors.forEach(function(error) { %>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <%= error.msg %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<% }); %> <% } %> <% if(success_msg != ''){ %>
+<% if(typeof errors != 'undefined'){ %> 
+  <div class="alert alert-dismissible" role="alert">
+  
+    <%= errors.msg %>
+    <a>this is a bug msg</a>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+   <% } %> 
+
+
+<!-- <% if(typeof errors != 'undefined'){ %> <% errors.forEach(function(error) { %>
+  <div class="alert" role="alert">
+  
+    <%= errors.msg %>
+    <a>this is a bug msg</a>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <% }); %> <% } %>  -->
+
+<!-- this is success message -->
+<% if(success_msg != ''){ %>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <%= success_msg %>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">

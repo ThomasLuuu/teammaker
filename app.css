@@ -53,3 +53,9 @@
 .button:hover{
     background-color: #a3f7bf;
 }
+
+.alert{
+    size: 2rem;
+    color: gray;
+    
+}

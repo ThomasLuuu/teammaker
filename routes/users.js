@@ -16,8 +16,9 @@ router.get('/demoregister',(req,res) => {
   res.render('register')})
 // Register
 router.post('/register', (req, res) => {
-  const { name, password, password2 } = req.body;
+  const { password, password2 } = req.body;
   const email = req.body.email;
+  const name = req.body.name;
   let errors = [];
 
   if (!name || !email || !password || !password2) {
