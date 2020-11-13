@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const vendors = require('vendors');
 const app = express();
+app.use(express.static("image"));
 const bodyParser = require('body-parser');
 // Passport Config
 require('./config/passport')(passport);
