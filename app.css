@@ -59,3 +59,9 @@
     color: gray;
     
 }
+
+.logo{
+    background-image: url(/image/logormit.png);
+    width: 100;
+    height: 100;
+}
