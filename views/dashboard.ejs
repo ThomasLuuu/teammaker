@@ -1,11 +1,5 @@
-<style>
-.overlay {
-  border-style: groove;
-  border-color: #4d79ff;
-  border-width: 5px;
-}
-</style>
 
+<link rel="stylesheet" href="/css/app.css">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">Home Page</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,15 +31,15 @@
     </form>
   </div>
 </nav>
-<h1>
+<h1 class="title">
   This is user page
 </h1>
 
 <div class="container">
   <% users.forEach(function (user) {%>
     <div class="col-md-3" style="padding-bottom: 40px;">
-    <div class="card overlay" style="width: 18rem;">
-      <div class="card-body">
+    <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color: green;">
+      <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: green;">
         <h5 class="card-title"><%= user.name %></h5>
         <p class="card-text"><%= user.assignment   %></p>
         <p class="card-text"><%= user.percentage  %></p>

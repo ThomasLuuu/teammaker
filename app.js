@@ -6,7 +6,6 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const vendors = require('vendors');
 const app = express();
-app.use(express.static("image"));
 const bodyParser = require('body-parser');
 // Passport Config
 require('./config/passport')(passport);
@@ -30,8 +29,12 @@ app.set('view engine', 'ejs');
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + './node_modules_bootstrap/dist/css' ));
+app.use(express.static(__dirname + '/node_modules_bootstrap/dist/css' ));
 app.use(express.static(__dirname+ './config'));
+
+//Access to CSS and Image
+app.use(express.static("image"));
+app.use("/css", express.static(__dirname + "/css"));
 // Express session
 app.use(
   session({
