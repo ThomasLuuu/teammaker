@@ -33,8 +33,9 @@ app.use(express.static(__dirname + '/node_modules_bootstrap/dist/css' ));
 app.use(express.static(__dirname+ './config'));
 
 //Access to CSS and Image
-app.use(express.static("image"));
+app.use("/image",express.static(__dirname + "/image"));
 app.use("/css", express.static(__dirname + "/css"));
+
 // Express session
 app.use(
   session({
