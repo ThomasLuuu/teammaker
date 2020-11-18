@@ -73,3 +73,7 @@ tr td:hover{
     background-image: url("../image/bgwhite.jpg");
     height: 100vh;
 }
+
+.list-inline {
+    text-align: center;
+}
