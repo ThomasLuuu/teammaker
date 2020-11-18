@@ -65,11 +65,9 @@
 }
 
 tr td:hover{
-    background-color: darkcyan !important;
-    color: whitesmoke !important;
+    background-color: darkcyan;
+    color: whitesmoke;
 }
-
-
 
 .body{
     background-image: url("../image/bgwhite.jpg");
