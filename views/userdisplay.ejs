@@ -48,11 +48,12 @@
     <tbody>
       <% users.forEach(function (user) {%>
       <tr>
-        <td style="color: whitesmoke;"><%= user.name %></td>
-        <td style="color: whitesmoke;"><%= user.email %></td>
+        <td style="color: black;"><%= user.name %></td>
+        <td style="color: black;"><%= user.email %></td>
         <td>
           <a href="/edituser/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Edit</a>
           <a href="/delete/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Delete</a>
+          <a href="/" class="btn btn-primary" style="margin: 5px">Ban user</a>
         </td>
       </tr>
       <%}) %>

@@ -64,9 +64,12 @@
     border-radius: 1rem;
 }
 
-tr:hover{
-    background-color: darkcyan;
+tr td:hover{
+    background-color: darkcyan !important;
+    color: whitesmoke !important;
 }
+
+
 
 .body{
     background-image: url("../image/bgwhite.jpg");
