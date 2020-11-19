@@ -12,40 +12,19 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  studentid:{
+  creator:{
     type:String,
-},
-studentyear:{
-      type:String,
 },
 course: {
   type: String,
 },
-courseid: {
+classtime: {
   type: String,
 },
-semester: {
+GPA: {
   type: String,
 },
-assignment: {
-  type: String,
-},
-description: {
-  type: String,
-},
-percentage: {
-  type: String,
-},
-technologyuse: {
-  type: String,
-},
-scope: {
-  type: String,
-},
-company: {
-  type: String,
-},
-application: {
+requirment: {
   type: String,
 },
 photo: {

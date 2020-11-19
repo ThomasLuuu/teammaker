@@ -49,28 +49,6 @@
             />
           </div>
           <div class="form-group">
-            <label for="Student ID">Student ID</label>
-            <input
-              type="studentid"
-              id="studentid"
-              name="studentid"
-              class="form-control"
-              placeholder="Enter Student ID"
-              value="<%= typeof studentid != 'undefined' ? studentid : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="studentyear">Student year</label>
-            <input
-              type="studentyear"
-              id="studentyear"
-              name="studentyear"
-              class="form-control"
-              placeholder="Enter your student year"
-              value="<%= typeof studentyear != 'undefined' ? studentyear : '' %>"
-            />
-          </div>
-          <div class="form-group">
             <label for="course">Course</label>
             <input
               type="course"
@@ -82,108 +60,53 @@
             />
           </div>
           <div class="form-group">
-            <label for="courseid">Course ID</label>
+            <label for="classtime">Class time</label>
             <input
-              type="courseid"
-              id="courseid"
-              name="courseid"
+              type="datetime-local"
+              id="classtime"
+              name="classtime"
               class="form-control"
-              placeholder="Enter Course ID"
-              value="<%= typeof courseid != 'undefined' ? courseid : '' %>"
+              placeholder="Enter your class time"
+              value="<%= typeof classtime != 'undefined' ? classtime : '' %>"
             />
           </div>
           <div class="form-group">
-            <label for="semester">Semester</label>
+            <label for="GPA">GPA</label>
             <input
-              type="semester"
-              id="semester"
-              name="semester"
+              type="GPA"
+              id="GPA"
+              name="GPA"
               class="form-control"
-              placeholder="Enter Semester"
-              value="<%= typeof semester != 'undefined' ? semester : '' %>"
+              placeholder="Enter your GPA"
+              value="<%= typeof GPA != 'undefined' ? GPA : '' %>"
             />
           </div>
           <div class="form-group">
-            <label for="assignment">Assignment</label>
+            <label for="creator">Creator</label>
             <input
-              type="assignment"
-              id="assignment"
-              name="assignment"
+              type="creator"
+              id="creator"
+              name="creator"
               class="form-control"
-              placeholder="Enter Your Assignment"
-              value="<%= typeof assignment != 'undefined' ? assignment : '' %>"
+              placeholder="Enter your name"
+              value="<%= typeof creator != 'undefined' ? creator : '' %>"
             />
           </div>
           <div class="form-group">
-            <label for="description">Description</label>
+            <label for="requirement">Requirement</label>
             <input
-              type="description"
-              id="description"
-              name="description"
+              type="requirement"
+              id="requirement"
+              name="requirement"
               class="form-control"
-              placeholder="Your Description about it"
-              value="<%= typeof description != 'undefined' ? description : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="percentage">Percentage </label>
-            <input
-              type="percentage"
-              id="percentage"
-              name="percentage"
-              class="form-control"
-              placeholder="Enter Your Percentage"
-              value="<%= typeof percentage != 'undefined' ? percentage : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="technologyuse">Technology Use </label>
-            <input
-              type="technologyuse"
-              id="technologyuse"
-              name="technologyuse"
-              class="form-control"
-              placeholder="Enter Your Technology Use"
-              value="<%= typeof technologyuse != 'undefined' ? technologyuse : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="scope">Scope</label>
-            <input
-              type="scope"
-              id="scope"
-              name="scope"
-              class="form-control"
-              placeholder="Enter Scope"
-              value="<%= typeof scope != 'undefined' ? scope : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="company">Company</label>
-            <input
-              type="company"
-              id="company"
-              name="company"
-              class="form-control"
-              placeholder="Enter Company"
-              value="<%= typeof company != 'undefined' ? company : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="application">Application</label>
-            <input
-              type="application"
-              id="application"
-              name="application"
-              class="form-control"
-              placeholder="Enter Application"
-              value="<%= typeof application != 'undefined' ? application : '' %>"
+              placeholder="Your Requirement for a teammate"
+              value="<%= typeof requirement != 'undefined' ? requirement: '' %>"
             />
           </div>
           <div class="form-group">
             <label for="photo">Photo</label>
             <input
-              type="phot"
+              type="photo"
               id="photo"
               name="photo"
               class="form-control"

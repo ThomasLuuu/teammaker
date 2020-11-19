@@ -85,18 +85,11 @@ router.get('/edituser/:id',ensureAuthenticated ,(req,res) =>{
 router.post('/edits/:id', function(req, res){
   let user = {};
   user.name = req.body.name;
-  user.studentid = req.body.studentid;
-  user.studentyear = req.body.studentyear;
   user.course = req.body.course;
-  user.courseid = req.body.courseid;
-  user.semester = req.body.semester;
-  user.assignment = req.body.assignment;
-  user.description = req.body.description;
-  user.percentage = req.body.percentage;
-  user.technologyuse = req.body.technologyuse;
-  user.scope = req.body.scope;
-  user.company = req.body.company;
-  user.application = req.body.application;
+  user.classtime = req.body.classtime;
+  user.GPA = req.body.GPA;
+  user.creator = req.body.creator;
+  user.requirement = req.body.requirement;
   user.photo = req.body.photo;
 
   let query = {_id:req.params.id}
@@ -153,10 +146,10 @@ router.get('/search/keyword', function(req, res){
 // Adding
 
 router.post('/addproject', (req, res) => {
-  const { name, studentid, studentyear, course, courseid, semester, assignment, description, percentage, technologyuse, scope, company, application, photo } = req.body;
+  const { name, course, classtime, GPA, creator, requirement, photo } = req.body;
   let errors = [];
 
-  if ( !studentid || !studentyear || !course || !courseid || !semester || !assignment || !description || !percentage || !technologyuse || !scope || !company || !application || !photo) {
+  if (!name || !course || !classtime || !GPA || !creator|| !requirement || !photo) {
     errors.push({ msg: 'Please enter all fields' });
   }
   
@@ -166,77 +159,36 @@ router.post('/addproject', (req, res) => {
     res.render('addproject', {
       errors,
       name,
-      studentid,
-      studentyear,
       course,
-      courseid,
-      semester,
-      assignment,
-      description,
-      percentage,
-      technologyuse,
-      scope,
-      company,
-      application,
+      classtime,
+      GPA,
+      creator,
+      requirement,
       photo
     });
   } else {
-    User.findOne({ assignment: assignment }).then(user => {
-      if (user) {
-        errors.push({ msg: 'Assignment already exists' });
-        res.render('addproject', {
-          errors,
-          name,
-          studentid,
-          studentyear,
-          course,
-          courseid,
-          semester,
-          assignment,
-          description,
-          percentage,
-          technologyuse,
-          scope,
-          company,
-          application,
-          photo
-        });
-      } else{
         const newUser = new User({
           name,
-          studentid,
-          studentyear,
           course,
-          courseid,
-          semester,
-          assignment,
-          description,
-          percentage,
-          technologyuse,
-          scope,
-          company,
-          application,
+          classtime,
+          GPA,
+          creator,
+          requirement,
           photo
         });
 
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.scope, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.scope = hash;
-            newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You added new project'
-                );
-                res.redirect('/dashboard');
-              })
-              .catch(err => console.log(err));
-          });
-        });
-      }
-    });
+        newUser
+        .save()
+        .then(user => {
+          req.flash(
+            'success_msg',
+            'You added new project'
+          );
+          res.redirect('/dashboard');
+        })
+      
+        
+    
   }
 });
 
