@@ -21,7 +21,7 @@
         <td>
           <a href="/edituser/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Edit</a>
           <a href="/delete/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Delete</a>
-          <a href="/" class="btn btn-primary" style="margin: 5px">Ban user</a>
+          <a  href="/banuser/<%= user.id%>"  class="btn btn-primary" style="margin: 5px" method="POST">Ban user</a>
         </td>
       </tr>
       <%}) %>

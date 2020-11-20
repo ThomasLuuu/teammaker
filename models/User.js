@@ -41,6 +41,7 @@ const User = mongoose.model('User', UserSchema);
 app.delete('/users/:id', function(req,res){
   User.deleteOne({id: req.params.id}, function(err, result){
     res.send(result)
+    res.render('/userdisplay')
   })
 })
 module.exports = User;

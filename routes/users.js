@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 // Load User model
 const User = require('../models/User');
+const Banlist = require('../models/Banlist');
 const { forwardAuthenticated } = require('../config/auth');
 const { checktype } = require('../config/auth');
 

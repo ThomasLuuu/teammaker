@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const Project = require('../models/Project');
+const Banlist = require('../models/Banlist');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
@@ -9,6 +9,7 @@ const mongo = require('mongodb');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const bodyParser = require('body-parser');
+const { db } = require('../models/Banlist');
 
 // Welcome Page
 router.use(bodyParser.json())
@@ -129,8 +130,35 @@ router.post('/edituser/:id', function(req, res){
 //delete project
 router.get('/delete/:id', ensureAuthenticated, (req,res) =>{
   User.findByIdAndDelete(req.params.id, function(err, user){
-    res.redirect('/userdisplay')
+    res.redirect('/dashboard')
   });
+});
+router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
+  User.findById(req.params.id, function(err,user){
+    var userids = req.params.id;
+    console.log(userids)
+  }
+  )
+  //  const {banmail} = req.body;
+  // let errors =[];
+  // if(errors.length > 0){
+  //   res.render('displayuser',{
+  //     banmail,
+  //   });
+    
+  // }else{
+  //   const newBanlist = new Banlist({
+  //     banmail,
+  //   })
+  //   .save()
+  //   .then(user => {
+  //     req.flash(
+  //       'success_msg',
+  //     );
+  //     res.redirect('/dashboard');
+  //   });
+
+  // }
 });
 //fiding project TEST
 
