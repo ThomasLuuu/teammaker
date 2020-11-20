@@ -27,8 +27,7 @@ router.post('/register', (req, res) => {
   }
 
   if (req.body.email.indexOf("@rmit")>=1){
-    console.log("a123")
-    
+      console.log("this is rmit email")    
   }else{
     errors.push({msg: 'rmit staff and student only!'})
   }
@@ -60,30 +59,42 @@ router.post('/register', (req, res) => {
           password,
           password2
         });
-      } else {
-        const newUser = new User({
+      } Banlist.findOne({ banemail : email }).then(user => {
+        if(user){
+          errors.push({ msg: 'You have been ban' });
+          console.log("you have been banned");
+        res.render('register', {
+          errors,
           name,
           email,
-          password
+          password,
+          password2
         });
-
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You are now registered and can log in'
-                );
-                res.redirect('/users/login');
-              })
-              .catch(err => console.log(err));
+        }else {
+          const newUser = new User({
+            name,
+            email,
+            password
           });
-        });
-      }
+  
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser
+                .save()
+                .then(user => {
+                  req.flash(
+                    'success_msg',
+                    'You are now registered and can log in'
+                  );
+                  res.redirect('/users/login');
+                })
+                .catch(err => console.log(err));
+            });
+          });
+        }
+      }) 
     });
   }
 });

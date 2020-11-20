@@ -133,32 +133,34 @@ router.get('/delete/:id', ensureAuthenticated, (req,res) =>{
     res.redirect('/dashboard')
   });
 });
+
+//create ban user function
 router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
   User.findById(req.params.id, function(err,user){
-    var userids = req.params.id;
+    var userids = "ObjectId("+'"'+req.params.id+'"'+")";
     console.log(userids)
+   User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+    //  console.log(result);
+     var banemailget = result.map(({email})=>email)
+    //  var banemailconfirmed = banemailget.values();
+    //  console.log("confirm this " + banemailconfirmed)
+     
+     const newBanlist = new Banlist({
+        banemail: banemailget[0],
+     })
+     newBanlist.save()
+     .then(user => {
+      req.flash(
+        'success_msg',
+        'ban sucessfully'
+        );
+      res.redirect('/dashboard');
+    })
+   })
+    
   }
   )
-  //  const {banmail} = req.body;
-  // let errors =[];
-  // if(errors.length > 0){
-  //   res.render('displayuser',{
-  //     banmail,
-  //   });
-    
-  // }else{
-  //   const newBanlist = new Banlist({
-  //     banmail,
-  //   })
-  //   .save()
-  //   .then(user => {
-  //     req.flash(
-  //       'success_msg',
-  //     );
-  //     res.redirect('/dashboard');
-  //   });
 
-  // }
 });
 //fiding project TEST
 
