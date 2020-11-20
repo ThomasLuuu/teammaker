@@ -207,6 +207,7 @@ router.post('/addproject', (req, res) => {
           photo
         });
 
+      
         newUser
         .save()
         .then(user => {
