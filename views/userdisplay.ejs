@@ -137,9 +137,11 @@
         <p>Are you sure you want to delete this user?</p>
 
         <div class="clearfix">
-          <button type="button" class="cancelbtn">Yes</button>
+          <a href="/delete/<%= user.id%>">
+            <button type="button" class="deletebtn">Delete</button>
+          </a>
           <a href="/banuser/<%= user.id%>" method="POST">
-            <button type="button" class="deletebtn">No, just ban it</button>
+            <button type="button" class="cancelbtn">No, just ban it</button>
           </a>
         </div>
       </div>
