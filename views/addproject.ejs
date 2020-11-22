@@ -51,10 +51,12 @@
           <div class="form-group">
             <label for="classtime">Class time</label>
             <input
-              type="datetime-local"
+              type="text"
               id="classtime"
               name="classtime"
               class="form-control"
+              onfocus="onFocus()"
+              onblur="onBlur()"
               placeholder="Enter your class time"
               value="<%= typeof classtime != 'undefined' ? classtime : '' %>"
             />
@@ -110,4 +112,17 @@
       </div>
     </div>
   </div>
+<script>
+  //Change to date time picker when clicked
+  function onFocus() {
+    var x = document.getElementById("classtime")
+    x.type = "datetime-local"
+  }
+
+  //Change to normal text field when unclicked
+  function onBlur() {
+    var x = document.getElementById("classtime")
+    x.type = "text"
+  }
+</script>
   
