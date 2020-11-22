@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const Banlist = require('../models/Banlist');
 const User = require('../models/User');
+const Post = require('../models/Post');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongo = require('mongodb');
@@ -10,6 +11,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const bodyParser = require('body-parser');
 const { db } = require('../models/Banlist');
+const Adminlist = require('../models/Admin');
 
 // Welcome Page
 router.use(bodyParser.json())
@@ -20,7 +22,7 @@ router.get('/', forwardAuthenticated, (req, res)=>{
 });
 // Dashboard
 router.get('/dashboard', ensureAuthenticated,(req, res)=>{
-      User.find({course: {$exists: true}}, function(err, data){
+      Post.find({course: {$exists: true}}, function(err, data){
         res.render('dashboard.ejs',{
           user  :req.user,
           users  : data
@@ -31,7 +33,7 @@ router.get('/dashboard', ensureAuthenticated,(req, res)=>{
 //Dashboard for admin
 
 router.get('/dashboardadmin', ensureAuthenticated,(req, res)=>{
-  User.find({course: {$exists: true}}, function(err, data){
+  Post.find({course: {$exists: true}}, function(err, data){
     res.render('dashboardadmin.ejs',{
       user  :req.user,
       users  : data
@@ -49,9 +51,9 @@ router.get('/userdisplay', ensureAuthenticated,(req, res)=>{
 });
 //detail page of products
 router.get('/detail/:id',ensureAuthenticated ,(req,res) =>{
-  User.findById(req.params.id, function(err, user){
+  Post.findById(req.params.id, function(err, post){
     res.render('projectdetail', {
-      user:user
+      post:post
 
     });
   });
@@ -59,16 +61,16 @@ router.get('/detail/:id',ensureAuthenticated ,(req,res) =>{
 // Add Projects
 router.get('/addproject', ensureAuthenticated,(req, res) =>
   res.render('addproject', {
-    user: req.user,
+    post: req.post,
    
   })
 );
 
-//load form of editing
+//load form of editing post
 router.get('/edits/:id',ensureAuthenticated ,(req,res) =>{
-  User.findById(req.params.id, function(err, user){
+  Post.findById(req.params.id, function(err, post){
     res.render('editproject', {
-      user:user
+      post: post
 
     });
   });
@@ -84,18 +86,17 @@ router.get('/edituser/:id',ensureAuthenticated ,(req,res) =>{
 });
 //edit project
 router.post('/edits/:id', function(req, res){
-  let user = {};
-  user.name = req.body.name;
-  user.course = req.body.course;
-  user.classtime = req.body.classtime;
-  user.GPA = req.body.GPA;
-  user.creator = req.body.creator;
-  user.requirement = req.body.requirement;
-  user.photo = req.body.photo;
+  let post = {};
+  post.course = req.body.course;
+  post.classtime = req.body.classtime;
+  post.GPA = req.body.GPA;
+  post.creator = req.body.creator;
+  post.requirement = req.body.requirement;
+  post.photo = req.body.photo;
 
   let query = {_id:req.params.id}
 
-  User.update(query, user, function(err){
+  Post.update(query, post, function(err){
     if(err){
       console.log(err);
       return;
@@ -107,6 +108,14 @@ router.post('/edits/:id', function(req, res){
 
 
 });
+
+//delete post
+router.get('/deletepost/:id', ensureAuthenticated, (req,res) =>{
+  Post.findByIdAndDelete(req.params.id, function(err, post){
+    res.redirect('/dashboard')
+  });
+});
+
 //edit user
 router.post('/edituser/:id', function(req, res){
   let user = {};
@@ -127,7 +136,7 @@ router.post('/edituser/:id', function(req, res){
 
 
 });
-//delete project
+//delete users
 router.get('/delete/:id', ensureAuthenticated, (req,res) =>{
   User.findByIdAndDelete(req.params.id, function(err, user){
     res.redirect('/dashboard')
@@ -162,24 +171,54 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
   )
 
 });
+
+//Upgrade to admin function
+router.get('/adminpermission/:id',ensureAuthenticated, (req, res)=>{
+  User.findById(req.params.id, function(err,user){
+    var userids = "ObjectId("+'"'+req.params.id+'"'+")";
+    console.log(userids)
+   User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+    //  console.log(result);
+     var adminemailget = result.map(({email})=>email)
+    //  var banemailconfirmed = banemailget.values();
+    //  console.log("confirm this " + banemailconfirmed)
+     
+     const newAdminlist = new Adminlist({
+        adminemail: adminemailget[0],
+     })
+     newAdminlist.save()
+     .then(user => {
+      req.flash(
+        'success_msg',
+        'upgrade sucessfully'
+        );
+      res.redirect('/dashboard');
+    })
+   })
+    
+  }
+  )
+
+});
+
 //fiding project TEST
 
 router.get('/search/keyword', function(req, res){
   
-  User.find({name: req.query.keyword}, function(err, data){
+  Post.find({name: req.query.keyword}, function(err, data){
     res.render('dashboard.ejs',{
-      user :req.user,
-      users :data
+      post :req.user, //user
+      posts :data     //users
     });
   });
 });
 // Adding
 
 router.post('/addproject', (req, res) => {
-  const { name, course, classtime, GPA, creator, requirement, photo } = req.body;
+  const { course, classtime, GPA, creator, requirement, photo } = req.body;
   let errors = [];
 
-  if (!name || !course || !classtime || !GPA || !creator|| !requirement || !photo) {
+  if ( !course || !classtime || !GPA || !creator|| !requirement || !photo) {
     errors.push({ msg: 'Please enter all fields' });
   }
   
@@ -188,7 +227,6 @@ router.post('/addproject', (req, res) => {
   if (errors.length > 0) {
     res.render('addproject', {
       errors,
-      name,
       course,
       classtime,
       GPA,
@@ -197,8 +235,7 @@ router.post('/addproject', (req, res) => {
       photo
     });
   } else {
-        const newUser = new User({
-          name,
+        const newPost = new Post({
           course,
           classtime,
           GPA,
@@ -208,7 +245,7 @@ router.post('/addproject', (req, res) => {
         });
 
       
-        newUser
+        newPost
         .save()
         .then(user => {
           req.flash(

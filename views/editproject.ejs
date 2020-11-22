@@ -7,41 +7,36 @@
         <i class="fas fa-user-plus"></i> Edit Project
       </h1>
       <% include ./partials/messages %>
-      <form action="/edits/<%= user.id%> " method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="name" id="name" name="name" class="form-control" placeholder="Enter Name"
-            value="<%= user.name %>" />
-        </div>
+      <form action="/edits/<%= post.id%> " method="POST">
         <div class="form-group">
           <label for="course">Course</label>
           <input type="course" id="course" name="course" class="form-control" placeholder="Enter your Course"
-            value="<%= user.course %>" />
+            value="<%= post.course %>" />
         </div>
         <div class="form-group">
           <label for="classtime">Class time</label>
           <input type="classtime" id="classtime" name="classtime" class="form-control" placeholder="Enter your class time"
-            value="<%= user.classtime %>" />
+            value="<%= post.classtime %>" />
         </div>
         <div class="form-group">
           <label for="GPA">GPA</label>
           <input type="GPA" id="GPA" name="GPA" class="form-control" placeholder="Enter your GPA"
-            value="<%= user.GPA %>" />
+            value="<%= post.GPA %>" />
         </div>    
         <div class="form-group">
           <label for="creator">Creator</label>
           <input type="creator" id="creator" name="creator" class="form-control"
-            placeholder="Your name" value="<%= user.creator %>" />
+            placeholder="Your name" value="<%= post.creator %>" />
         </div>
         <div class="form-group">
           <label for="requirement">Requirement </label>
           <input type="requirement" id="requirement" name="requirement" class="form-control"
-            placeholder="Requirement for a teammate? " value="<%= user.requirement %>" />
+            placeholder="Requirement for a teammate? " value="<%= post.requirement %>" />
         </div>
         <div class="form-group">
           <label for="photo">Photo</label>
           <input type="phot" id="photo" name="photo" class="form-control" placeholder="Leave Assignment's Photo here"
-            value="<%= user.photo %>" />
+            value="<%= post.photo %>" />
         </div>
         <button type="submit" class="btn btn-primary btn-block">
           Submit Project

@@ -35,7 +35,6 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Name</th>
       <th scope="col">Course</th>
       <th scope="col">Class</th>
       <th scope="col">GPA</th>
@@ -46,17 +45,16 @@
   <tbody>
 
     <tr>
-      <td><%= user.name %></td>
-      <td><%= user.course %></td>
-      <td><%= user.classtime %></td>
-      <td><%= user.GPA %></td>
-      <td><%= user.creator %></td>
-      <td><%= user.requirment %></td>
+      <td><%= post.course %></td>
+      <td><%= post.classtime %></td>
+      <td><%= post.GPA %></td>
+      <td><%= post.creator %></td>
+      <td><%= post.requirment %></td>
     </tr>
   </tbody>
 </table>
-<a href="/edits/<%= user.id%> " class="btn btn-primary">Edit</a>
-<a href="/delete/<%= user.id%> " class="btn btn-primary">Delete</a>
+<a href="/edits/<%= post.id%> " class="btn btn-primary">Edit</a>
+<a href="/deletepost/<%= post.id%> " class="btn btn-primary">Delete</a>
 <h3>The Project Images</h3>
-<img src="<%= user.photo %>" />
+<img src="<%= post.photo %>" />
 <% include ./footer %>

@@ -5,6 +5,8 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/User');
 const Banlist = require('../models/Banlist');
+const Post = require('../models/Post');
+const Adminlist = require('../models/Admin');
 const { forwardAuthenticated } = require('../config/auth');
 const { checktype } = require('../config/auth');
 
@@ -99,37 +101,56 @@ router.post('/register', (req, res) => {
   }
 });
 
+// User.findOne({ email: email }).then(user => {
+//   if (user) {
+//     errors.push({ msg: 'Email already exists' });
+//     res.render('register', {
+//       errors,
+//       name,
+//       email,
+//       password,
+//       password2
+//     });
+//   }
+
 // Login
 router.post('/login', (req, res, next) => {
   const email = req.body.email
   var check = email;
-  if(check != "new@rmit"){
-    passport.authenticate('local', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/users/login',
-      failureFlash: true})
-  (req, res, next);
-}
-
-  if(check = "new@rmit"){
-    passport.authenticate('local', {
-      successRedirect: '/dashboardadmin',
-      failureRedirect: '/users/login',
-      failureFlash: true})
-      (req, res, next);
-}
-
-// router.post('/login', (req, res, next) => {
-//   const email = req.body.email
-//   console.log(email);
-//   if(req.body.email = "new@rmit"){
-//     console.log(req.body.email);
-  // passport.authenticate('local', {
-  //   successRedirect: '/dashboard',
-  //   failureRedirect: '/users/login',
-  //   failureFlash: true
-//   })(req, res, next);
+  Adminlist.findOne({adminemail : email}).then(user =>{
+    if(user){
+      passport.authenticate('local',{
+        successRedirect: '/dashboardadmin',
+        failureRedirect: '/users/login',
+        failureFlash:true
+      })
+      (req, res, next)
+    }else{
+      passport.authenticate('local',{
+        successRedirect: '/dashboard',
+        failureRedirect:'users/login',
+        failureFlash:true
+      })
+      (req, res, next)
+    }
+  }) 
+//   if(check != "new@rmit"){
+//     passport.authenticate('local', {
+//       successRedirect: '/dashboard',
+//       failureRedirect: '/users/login',
+//       failureFlash: true})
+//   (req, res, next);
 // }
+
+//   if(check = "new@rmit"){
+//     passport.authenticate('local', {
+//       successRedirect: '/dashboardadmin',
+//       failureRedirect: '/users/login',
+//       failureFlash: true})
+//       (req, res, next);
+// }
+
+
 });
 // Logout
 router.get('/logout', (req, res) => {

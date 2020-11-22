@@ -1,4 +1,5 @@
 module.exports = {
+  
   //this is the part I check if user login to the system or not
   ensureAuthenticated: function(req, res, next) {
     if (req.isAuthenticated()) {
@@ -13,9 +14,7 @@ module.exports = {
       return next();
     }
     res.redirect('/dashboard');
-
-    
-      
-          
   }
+
+
 };

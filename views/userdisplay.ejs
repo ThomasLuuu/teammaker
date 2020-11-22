@@ -119,16 +119,15 @@
         <td><%= user.email %></td>
         <td>
           <a href="/edituser/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Edit</a>
-          <a class="btn btn-primary" style="margin: 5px;"
-            onclick="document.getElementById('id01').style.display='block'">Delete</a>
-          <a href="/banuser/<%= user.id%>" class="btn btn-primary" style="margin: 5px" method="POST">Ban user</a>
+          <a href="/delete/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Delete</a>
+          <a href="/adminpermission/<%= user.id%>" class="btn btn-primary" style="margin: 5px" method="POST">Upgrade to Admin</a>
         </td>
       </tr>
       <%}) %>
     </tbody>
   </table>
 
-  <div id="id01" class="modal">
+  <!-- <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close"
       title="Close Modal">&times;</span>
     <form class="modal-content" action="/action_page.php">
@@ -146,7 +145,7 @@
         </div>
       </div>
     </form>
-  </div>
+  </div> -->
 </div>
 <% include ./footer %>
 
