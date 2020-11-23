@@ -59,10 +59,11 @@ router.get('/detail/:id',ensureAuthenticated ,(req,res) =>{
   });
 });
 // Add Projects
-router.get('/addproject', ensureAuthenticated,(req, res) =>
+router.get('/addproject/:id', ensureAuthenticated,(req, res) =>
   res.render('addproject', {
     post: req.post,
-   
+    user: req.user,
+    
   })
 );
 
@@ -138,8 +139,17 @@ router.post('/edituser/:id', function(req, res){
 });
 //delete users
 router.get('/delete/:id', ensureAuthenticated, (req,res) =>{
-  User.findByIdAndDelete(req.params.id, function(err, user){
-    res.redirect('/dashboard')
+  User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+    var deletemail = result.map(({email})=>email)
+    console.log(deletemail[0])
+    Post.remove({creator: deletemail[0]},function(err){
+      if(err){
+        console.log("fix this bug!");
+      }
+    });
+    User.findByIdAndDelete(req.params.id, function(err,user){
+      res.redirect('/dashboard')
+    });
   });
 });
 
@@ -212,30 +222,26 @@ router.get('/search/keyword', function(req, res){
     });
   });
 });
+
+
 // Adding
 
-router.post('/addproject', (req, res) => {
-  const { course, classtime, GPA, creator, requirement, photo } = req.body;
-  let errors = [];
-
-  if ( !course || !classtime || !GPA || !creator|| !requirement || !photo) {
-    errors.push({ msg: 'Please enter all fields' });
-  }
-  
-  
-
-  if (errors.length > 0) {
-    res.render('addproject', {
-      errors,
-      course,
-      classtime,
-      GPA,
-      creator,
-      requirement,
-      photo
-    });
-  } else {
-        const newPost = new Post({
+router.post('/addproject/:id', (req, res) => {
+  User.findById(req.params.id, function(err, user){
+    var userids = "ObjectId"+'"'+req.params.id+'"'+")";
+    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+      var postor = result.map(({email})=>email)
+      const { course, classtime, GPA, creator, requirement, photo } = req.body;
+      let errors = [];
+      if ( !course || !classtime || !GPA || !requirement || !photo) {
+        errors.push({ msg: 'Please enter all fields' });
+      }
+      
+      
+    
+      if (errors.length > 0) {
+        res.render('addproject', {
+          errors,
           course,
           classtime,
           GPA,
@@ -243,21 +249,32 @@ router.post('/addproject', (req, res) => {
           requirement,
           photo
         });
-
-      
-        newPost
-        .save()
-        .then(user => {
-          req.flash(
-            'success_msg',
-            'You added new project'
-          );
-          res.redirect('/dashboard');
-        })
-      
-        
+      } else {
+            const newPost = new Post({
+              course,
+              classtime,
+              GPA,
+              creator : postor[0],
+              requirement,
+              photo
+            });
     
-  }
+          
+            newPost
+            .save()
+            .then(user => {
+              req.flash(
+                'success_msg',
+                'You added new project'
+              );
+              res.redirect('/dashboard');
+            })
+          
+            
+        
+      }
+    }) 
+  })
 });
 
 module.exports = router;
