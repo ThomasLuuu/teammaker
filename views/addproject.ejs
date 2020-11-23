@@ -12,7 +12,7 @@
           Action
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a href="/addproject" class="dropdown-item">Adding Project</a>
+          <a href="/addproject/" class="dropdown-item">Adding Project</a>
           <a href="/userdisplay" class="dropdown-item">Edit User</a>
           <div class="dropdown-divider"></div>
           <a href="/users/logout" class="dropdown-item">Logout</a>
@@ -36,7 +36,7 @@
           <i class="fas fa-user-plus"></i> Add Project
         </h1>
         <% include ./partials/messages %>
-        <form action="/addproject" method="POST">
+        <form action="/addproject/<%= user.id %>" method="POST">
           <div class="form-group">
             <label for="course">Course</label>
             <input
