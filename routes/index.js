@@ -236,9 +236,6 @@ router.post('/addproject/:id', (req, res) => {
       if ( !course || !classtime || !GPA || !requirement || !photo) {
         errors.push({ msg: 'Please enter all fields' });
       }
-      
-      
-    
       if (errors.length > 0) {
         res.render('addproject', {
           errors,

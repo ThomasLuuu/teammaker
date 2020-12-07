@@ -13,6 +13,9 @@ const { checktype } = require('../config/auth');
 // Login Page
 router.get('/login',forwardAuthenticated, (req, res)=>res.render('login'));
 
+//Login Admin
+router.get('/loginadmin', forwardAuthenticated, (req,res) =>res.render('loginadmin')); 
+
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 router.get('/demoregister',(req,res) => {
@@ -22,6 +25,7 @@ router.post('/register', (req, res) => {
   const { password, password2 } = req.body;
   const email = req.body.email;
   const name = req.body.name;
+  const role = req.body.role;
   let errors = [];
 
   if (!name || !email || !password || !password2) {
@@ -76,7 +80,8 @@ router.post('/register', (req, res) => {
           const newUser = new User({
             name,
             email,
-            password
+            password,
+            role: 'user'
           });
   
           bcrypt.genSalt(10, (err, salt) => {
@@ -101,17 +106,23 @@ router.post('/register', (req, res) => {
   }
 });
 
-// User.findOne({ email: email }).then(user => {
-//   if (user) {
-//     errors.push({ msg: 'Email already exists' });
-//     res.render('register', {
-//       errors,
-//       name,
-//       email,
-//       password,
-//       password2
-//     });
-//   }
+
+//Login admin form
+
+router.post('/loginadmin,', (req, res, next) =>{
+  const email = req.body.email
+  var check = email;
+  Adminlist.findOne({adminemail: email}).then(user =>{
+    if(user){
+      passport.authenticate('local',{
+        successRedirect:'/dashboardadmin',
+        failureRedirect:'/users/login',
+        failureFlash:true
+      })
+      (req, res, next)
+    }
+  })
+})
 
 // Login
 router.post('/login', (req, res, next) => {
@@ -120,13 +131,6 @@ router.post('/login', (req, res, next) => {
   Adminlist.findOne({adminemail : email}).then(user =>{
     if(user){
       passport.authenticate('local',{
-        successRedirect: '/dashboardadmin',
-        failureRedirect: '/users/login',
-        failureFlash:true
-      })
-      (req, res, next)
-    }else{
-      passport.authenticate('local',{
         successRedirect: '/dashboard',
         failureRedirect:'/users/login',
         failureFlash:true
@@ -134,23 +138,6 @@ router.post('/login', (req, res, next) => {
       (req, res, next)
     }
   }) 
-//   if(check != "new@rmit"){
-//     passport.authenticate('local', {
-//       successRedirect: '/dashboard',
-//       failureRedirect: '/users/login',
-//       failureFlash: true})
-//   (req, res, next);
-// }
-
-//   if(check = "new@rmit"){
-//     passport.authenticate('local', {
-//       successRedirect: '/dashboardadmin',
-//       failureRedirect: '/users/login',
-//       failureFlash: true})
-//       (req, res, next);
-// }
-
-
 });
 // Logout
 router.get('/logout', (req, res) => {

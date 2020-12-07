@@ -12,24 +12,9 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  creator:{
-    type:String,
-},
-course: {
-  type: String,
-},
-classtime: {
-  type: String,
-},
-GPA: {
-  type: String,
-},
-requirment: {
-  type: String,
-},
-photo: {
-  type: String,
-},
+  role:{
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now
