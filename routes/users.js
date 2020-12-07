@@ -6,7 +6,6 @@ const passport = require('passport');
 const User = require('../models/User');
 const Banlist = require('../models/Banlist');
 const Post = require('../models/Post');
-const Adminlist = require('../models/Admin');
 const { forwardAuthenticated } = require('../config/auth');
 const { checktype } = require('../config/auth');
 
@@ -128,7 +127,7 @@ router.post('/loginadmin,', (req, res, next) =>{
 router.post('/login', (req, res, next) => {
   const email = req.body.email
   var check = email;
-  Adminlist.findOne({adminemail : email}).then(user =>{
+  User.findOne({email : email}).then(user =>{
     if(user){
       passport.authenticate('local',{
         successRedirect: '/dashboard',

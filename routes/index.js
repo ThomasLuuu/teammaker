@@ -110,6 +110,22 @@ router.post('/edits/:id', function(req, res){
 
 });
 
+//Upgrade to admin
+router.get('/adminpermission/:id', function(req, res){
+  let user = {};
+  user.role = 'admin';
+  let query ={_id:req.params.id}
+
+  User.update(query, user, function(err){
+    if(err){
+      console.log(err);
+      return;
+    }else{
+      res.redirect('/');
+    }
+  })
+})
+
 //delete post
 router.get('/deletepost/:id', ensureAuthenticated, (req,res) =>{
   Post.findByIdAndDelete(req.params.id, function(err, post){
@@ -183,33 +199,33 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
 });
 
 //Upgrade to admin function
-router.get('/adminpermission/:id',ensureAuthenticated, (req, res)=>{
-  User.findById(req.params.id, function(err,user){
-    var userids = "ObjectId("+'"'+req.params.id+'"'+")";
-    console.log(userids)
-   User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-    //  console.log(result);
-     var adminemailget = result.map(({email})=>email)
-    //  var banemailconfirmed = banemailget.values();
-    //  console.log("confirm this " + banemailconfirmed)
+// router.get('/adminpermission/:id',ensureAuthenticated, (req, res)=>{
+//   User.findById(req.params.id, function(err,user){
+//     var userids = "ObjectId("+'"'+req.params.id+'"'+")";
+//     console.log(userids)
+//    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+//     //  console.log(result);
+//      var adminemailget = result.map(({email})=>email)
+//     //  var banemailconfirmed = banemailget.values();
+//     //  console.log("confirm this " + banemailconfirmed)
      
-     const newAdminlist = new Adminlist({
-        adminemail: adminemailget[0],
-     })
-     newAdminlist.save()
-     .then(user => {
-      req.flash(
-        'success_msg',
-        'upgrade sucessfully'
-        );
-      res.redirect('/dashboard');
-    })
-   })
+//      const newAdminlist = new Adminlist({
+//         adminemail: adminemailget[0],
+//      })
+//      newAdminlist.save()
+//      .then(user => {
+//       req.flash(
+//         'success_msg',
+//         'upgrade sucessfully'
+//         );
+//       res.redirect('/dashboard');
+//     })
+//    })
     
-  }
-  )
+//   }
+//   )
 
-});
+// });
 
 //fiding project TEST
 
