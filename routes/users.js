@@ -106,23 +106,34 @@ router.post('/register', (req, res) => {
 });
 
 
-//Login admin form
-
-router.post('/loginadmin,', (req, res, next) =>{
+//Login admin checking
+router.post('/loginadmin', (req, res, next) => {
   const email = req.body.email
   var check = email;
-  Adminlist.findOne({adminemail: email}).then(user =>{
-    if(user){
-      passport.authenticate('local',{
-        successRedirect:'/dashboardadmin',
-        failureRedirect:'/users/login',
-        failureFlash:true
+  User.find({email: email }).select('-_id role').exec(function(err, result){
+    if(err) return next(err);
+    var idrole = result.map(({role})=>role)
+    console.log(result)
+    console.log(email)
+    if(idrole[0]='user'){
+      User.findOne({email:email}).then(user =>{
+        if(user){
+          passport.authenticate('local',{
+            successRedirect: '/dashboardadmin',
+            failureRedirect: '/users/loginadmin',
+            failureFlash: true
+          })
+          (req, res, next)
+        }
       })
-      (req, res, next)
+          
+      }else{
+      console.log('Back to user page')
     }
+    
   })
-})
 
+});
 // Login
 router.post('/login', (req, res, next) => {
   const email = req.body.email

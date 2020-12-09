@@ -11,7 +11,6 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const bodyParser = require('body-parser');
 const { db } = require('../models/Banlist');
-const Adminlist = require('../models/Admin');
 
 // Welcome Page
 router.use(bodyParser.json())
