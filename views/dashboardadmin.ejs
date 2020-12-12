@@ -33,14 +33,14 @@
   This is admin page
 </h1>
 <div class="container">
-  <% users.forEach(function (user) {%>
+  <% posts.forEach(function (post) {%>
     <div class="col-md-3">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title"><%= user.name %></h5>
-        <p class="card-text"><%= user.course   %></p>
-        <p class="card-text"><%= user.classtime  %></p>
-        <a href="/detail/<%= user.id%> "  class="btn btn-primary">Detail</a>
+        <h5 class="card-title"><%= post.name %></h5>
+        <p class="card-text"><%= post.course   %></p>
+        <p class="card-text"><%= post.classtime  %></p>
+        <a href="/detail/<%= post.id%> "  class="btn btn-primary">Detail</a>
       </div>
       </div>
 

@@ -5,6 +5,7 @@ const Banlist = require('../models/Banlist');
 const User = require('../models/User');
 const Post = require('../models/Post');
 const bcrypt = require('bcryptjs');
+const Favlist = require('../models/Favlist');
 const passport = require('passport');
 const mongo = require('mongodb');
 const Sequelize = require('sequelize');
@@ -23,8 +24,10 @@ router.get('/', forwardAuthenticated, (req, res)=>{
 router.get('/dashboard', ensureAuthenticated,(req, res)=>{
       Post.find({course: {$exists: true}}, function(err, data){
         res.render('dashboard.ejs',{
-          user  :req.user,
-          users  : data
+          post  :req.post,
+          posts  : data,
+          user: req.user,
+          users: data,
         });
       });
 });
@@ -57,7 +60,7 @@ router.get('/detail/:id',ensureAuthenticated ,(req,res) =>{
     });
   });
 });
-// Add Projects
+// Load add project form
 router.get('/addproject/:id', ensureAuthenticated,(req, res) =>
   res.render('addproject', {
     post: req.post,
@@ -65,7 +68,6 @@ router.get('/addproject/:id', ensureAuthenticated,(req, res) =>
     
   })
 );
-
 //load form of editing post
 router.get('/edits/:id',ensureAuthenticated ,(req,res) =>{
   Post.findById(req.params.id, function(err, post){
@@ -171,13 +173,9 @@ router.get('/delete/:id', ensureAuthenticated, (req,res) =>{
 //create ban user function
 router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
   User.findById(req.params.id, function(err,user){
-    var userids = "ObjectId("+'"'+req.params.id+'"'+")";
-    console.log(userids)
    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-    //  console.log(result);
      var banemailget = result.map(({email})=>email)
-    //  var banemailconfirmed = banemailget.values();
-    //  console.log("confirm this " + banemailconfirmed)
+    
      
      const newBanlist = new Banlist({
         banemail: banemailget[0],
@@ -196,36 +194,26 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
   )
 
 });
-
-//Upgrade to admin function
-// router.get('/adminpermission/:id',ensureAuthenticated, (req, res)=>{
-//   User.findById(req.params.id, function(err,user){
-//     var userids = "ObjectId("+'"'+req.params.id+'"'+")";
-//     console.log(userids)
-//    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-//     //  console.log(result);
-//      var adminemailget = result.map(({email})=>email)
-//     //  var banemailconfirmed = banemailget.values();
-//     //  console.log("confirm this " + banemailconfirmed)
-     
-//      const newAdminlist = new Adminlist({
-//         adminemail: adminemailget[0],
-//      })
-//      newAdminlist.save()
-//      .then(user => {
-//       req.flash(
-//         'success_msg',
-//         'upgrade sucessfully'
-//         );
-//       res.redirect('/dashboard');
-//     })
-//    })
-    
-//   }
-//   )
-
-// });
-
+//add to fav list function
+router.get('/addfavlist/:id', ensureAuthenticated, (req, res)=>{
+  User.findById(req.params.id, function(err, user){
+    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+      var liker = result.map(({email})=>email)
+      const newFavlist = new Favlist({
+        account: liker[0],
+      })
+      newFavlist.save()
+      .then(fav =>{
+        req.flash(
+          'success_msg',
+          'you liked it'
+        );
+        res.redirect('/dashboard');
+      })
+    })
+  }
+  )
+});
 //fiding project TEST
 
 router.get('/search/keyword', function(req, res){
@@ -239,7 +227,7 @@ router.get('/search/keyword', function(req, res){
 });
 
 
-// Adding
+// Function add project
 
 router.post('/addproject/:id', (req, res) => {
   User.findById(req.params.id, function(err, user){
