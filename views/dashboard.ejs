@@ -26,13 +26,15 @@
     <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color: green;">
       <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: green;">
         <h5 class="card-title"><%= post.name %></h5>
+        <p class="card-text"><%= post.creator %></p>
         <p class="card-text"><%= post.course   %></p>
         <p class="card-text"><%= post.classtime  %></p>
         <a href="/detail/<%= post.id%> " class="btn btn-primary" style="width: 75%; margin-bottom: 10px;">Detail</a>
-        <a href="/addfavlist/<%= user.id%>" class="btn btn-primary" style="width: 75%;">Add to favorite</a>
+        <a href="/addfavlist/<%= user.id%>/<%= post.id%>" class="btn btn-primary" style="width: 75%;">Add to favorite</a>
       </div>
     </div>
   </div>
   <%}) %>
 </div>
 <% include ./footer %>
+

@@ -195,7 +195,7 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
 
 });
 //add to fav list function
-router.get('/addfavlist/:id', ensureAuthenticated, (req, res)=>{
+router.get('/addfavlist/:id/:idpost', ensureAuthenticated, (req, res)=>{
   User.findById(req.params.id, function(err, user){
     User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
       var liker = result.map(({email})=>email)
