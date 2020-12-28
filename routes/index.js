@@ -197,22 +197,46 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
 //add to fav list function
 router.get('/addfavlist/:id/:idpost', ensureAuthenticated, (req, res)=>{
   User.findById(req.params.id, function(err, user){
-    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-      var liker = result.map(({email})=>email)
-      const newFavlist = new Favlist({
-        account: liker[0],
+    Post.findById(req.params.idpost, function(err, post){
+      Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postadd){
+        User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+          var liker = result.map(({email})=>email)
+          var poster = postadd.map(({_id})=>_id)
+          const newFavlist = new Favlist({
+            account: liker[0],
+            favpost: poster[0],
+          })
+          newFavlist.save()
+          .then(fav =>{
+            req.flash(
+              'success_msg',
+              'you liked it'
+            );
+            res.redirect('/dashboard');
+      
+          })
+        })
       })
-      newFavlist.save()
-      .then(fav =>{
-        req.flash(
-          'success_msg',
-          'you liked it'
-        );
-        res.redirect('/dashboard');
       })
-    })
   }
   )
+  // Post.findById(req.params.idpost, function(err, post){
+  //   Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postadd){
+  //     var poster = postadd.map(({_id})=>_id)
+  //     const newFavlist = new Favlist({
+  //       favpost: poster[0],
+  //     })
+  //     newFavlist.save()
+  //     .then(pos =>{
+  //       req.flash(
+  //         'success_msg',
+  //         'you add it'
+  //       );
+  //       res.redirect('/dashboard');
+  //     })
+  //   })
+  // })
+  console.log("added");
 });
 //fiding project TEST
 
