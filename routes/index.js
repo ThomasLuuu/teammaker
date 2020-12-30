@@ -6,6 +6,7 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 const bcrypt = require('bcryptjs');
 const Favlist = require('../models/Favlist');
+const Comlist = require('../models/Comlist');
 const passport = require('passport');
 const mongo = require('mongodb');
 const Sequelize = require('sequelize');
@@ -220,22 +221,37 @@ router.get('/addfavlist/:id/:idpost', ensureAuthenticated, (req, res)=>{
       })
   }
   )
-  // Post.findById(req.params.idpost, function(err, post){
-  //   Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postadd){
-  //     var poster = postadd.map(({_id})=>_id)
-  //     const newFavlist = new Favlist({
-  //       favpost: poster[0],
-  //     })
-  //     newFavlist.save()
-  //     .then(pos =>{
-  //       req.flash(
-  //         'success_msg',
-  //         'you add it'
-  //       );
-  //       res.redirect('/dashboard');
-  //     })
-  //   })
-  // })
+
+//Comment function
+router.get('/cmt/:id/:idpost', ensureAuthenticated, (req, res)=>{
+  User.findById(req.params.id, function(err, user){
+    Post.findById(req.params.idpost, function(err,post){
+      Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postlocation){
+        User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+          var commentor = result.map(({email})=>email)
+          var postfind = postlocation.map(({_id})=>_id)
+          const NewComlist = new Comlist({
+            post : postfind[0],
+            account : commentor[0],
+            comment,
+          })
+          NewComlist.save()
+          .then(fav=>{
+            req.flash(
+              'success_msg',
+              'you commented'
+            );
+            res.redirect('/dashboard');
+          })
+        })
+      })
+
+       
+    })
+  })
+})
+
+
   console.log("added");
 });
 //fiding project TEST
