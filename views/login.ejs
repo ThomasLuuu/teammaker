@@ -1,34 +1,26 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+<link rel="stylesheet" href="/css/login.css">
+
+<div>
+  <div class="login-dark">
+    <form action="/users/login" method="post">
+      <h2 class="sr-only">Login Form</h2>
       <% include ./partials/messages %>
-      <form action="/users/login" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Enter Password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form>
-      <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
+      <div class="illustration">
+        <i class="iconify" data-icon="ion-ios-locked-outline" style="color: #da3838;"></i>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" />
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-danger btn-block" type="submit" style="padding:10px; margin-top: 20px;">Log In</button>
+      </div>
+      <a class="forgot" href="#">Forgot your email or password?</a>
+      <p>
+        <a class="forgot" href="/users/register">Register</a>
       </p>
-    </div>
+    </form>
   </div>
 </div>
