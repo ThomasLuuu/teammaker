@@ -181,7 +181,7 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
      const newBanlist = new Banlist({
         banemail: banemailget[0],
      })
-     newBanlist.save()
+      newBanlist.save()
      .then(user => {
       req.flash(
         'success_msg',
