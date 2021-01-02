@@ -77,3 +77,7 @@ tr td:hover{
 .list-inline {
     text-align: center;
 }
+
+.main {
+    margin-left: 200px;
+}
