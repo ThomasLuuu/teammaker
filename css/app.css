@@ -1,6 +1,8 @@
 .title{
-    background-color: #a3f7bf;
     border-radius: 1rem;
+    align-items: center;
+    flex: 1;
+    padding-right: 12px;
 }
 
 .title-2{

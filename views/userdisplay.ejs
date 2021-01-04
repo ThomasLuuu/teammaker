@@ -102,56 +102,59 @@
 </style>
 
 <% include ./header %>
-<div style="overflow-x: auto;">
-  <table class="table">
-    <thead class="thead-dark">
-      <a href="/users/demoregister" class="btn btn-primary">Add User</a>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">ID</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% users.forEach(function (user) {%>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.id %></td>
-        <td>
-          <a href="/edituser/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Edit</a>
-          <a class="btn btn-primary"  id="<%= user.id %>"
-            onclick="onClick(this)">Delete</a>
-          <a href="/adminpermission/<%= user.id%>" class="btn btn-primary" style="margin: 5px" method="POST">Upgrade to
-            Admin</a>
-        </td>
-      </tr>
-      <%}) %>
-    </tbody>
-  </table>
 
-  <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-      title="Close Modal">&times;</span>
-    <form class="modal-content" action="/action_page.php">
-      <div class="container">
-        <h1>Ban user's account</h1>
-        <p>Are you sure you want to ban this user?</p>
+<div class="main">
+  <div style="overflow-x: auto;">
+    <table class="table">
+      <thead class="thead-dark">
+        <a href="/users/demoregister" class="btn btn-primary">Add User</a>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">ID</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(function (user) {%>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.id %></td>
+          <td>
+            <a href="/edituser/<%= user.id%> " class="btn btn-primary" style="margin: 5px;">Edit</a>
+            <a class="btn btn-primary" id="<%= user.id %>" onclick="onClick(this)">Delete</a>
+            <a href="/adminpermission/<%= user.id%>" class="btn btn-primary" style="margin: 5px" method="POST">Upgrade
+              to
+              Admin</a>
+          </td>
+        </tr>
+        <%}) %>
+      </tbody>
+    </table>
 
-        <div class="clearfix">        
-          <a href="/banuser/<%= user.id%>" method="POST" id="ban">
-            <button type="button" class="cancelbtn">Yes</button>
-          </a>
-          <a href="" id="delete">
-            <button type="button" class="deletebtn">No, just delete it</button>
-          </a>
+    <div id="id01" class="modal">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close"
+        title="Close Modal">&times;</span>
+      <form class="modal-content" action="/action_page.php">
+        <div class="container">
+          <h1>Ban user's account</h1>
+          <p>Are you sure you want to ban this user?</p>
+
+          <div class="clearfix">
+            <a href="/banuser/<%= user.id%>" method="POST" id="ban">
+              <button type="button" class="cancelbtn">Yes</button>
+            </a>
+            <a href="" id="delete">
+              <button type="button" class="deletebtn">No, just delete it</button>
+            </a>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
-<% include ./footer %>
+
 
 <script>
   // Get the modal
@@ -169,7 +172,7 @@
   //   console.log(x.value)
   // }
   function onClick(a) {
-    document.getElementById('id01').style.display='block'
+    document.getElementById('id01').style.display = 'block'
 
     var dlt = "/delete/"
     dlt = dlt + a.getAttribute("id")
