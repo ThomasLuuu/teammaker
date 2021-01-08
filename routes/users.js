@@ -7,6 +7,7 @@ const User = require('../models/User');
 const Banlist = require('../models/Banlist');
 const Post = require('../models/Post');
 const { forwardAuthenticated } = require('../config/auth');
+const {authRole} = require('../config/authrole');
 const { checktype } = require('../config/auth');
 
 // Login Page
@@ -109,13 +110,12 @@ router.post('/register', (req, res) => {
 //Login admin checking
 router.post('/loginadmin', (req, res, next) => {
   const email = req.body.email
-  var check = email;
   User.find({email: email }).select('-_id role').exec(function(err, result){
     if(err) return next(err);
     var idrole = result.map(({role})=>role)
     console.log(result)
     console.log(email)
-    if(idrole[0]='user'){
+    if(idrole[0]='admin'){
       User.findOne({email:email}).then(user =>{
         if(user){
           passport.authenticate('local',{
@@ -137,7 +137,6 @@ router.post('/loginadmin', (req, res, next) => {
 // Login
 router.post('/login', (req, res, next) => {
   const email = req.body.email
-  var check = email;
   User.findOne({email : email}).then(user =>{
     if(user){
       passport.authenticate('local',{

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {authRole} = require('../config/authrole');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const Banlist = require('../models/Banlist');
 const User = require('../models/User');
@@ -13,6 +14,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const bodyParser = require('body-parser');
 const { db } = require('../models/Banlist');
+const { render } = require('ejs');
 
 // Welcome Page
 router.use(bodyParser.json())
@@ -34,12 +36,13 @@ router.get('/dashboard', ensureAuthenticated,(req, res)=>{
 });
 
 //Dashboard for admin
-
-router.get('/dashboardadmin', ensureAuthenticated,(req, res)=>{
+router.get('/dashboardadmin',authRole("admin"), ensureAuthenticated,(req, res)=>{
   Post.find({course: {$exists: true}}, function(err, data){
     res.render('dashboardadmin.ejs',{
       user  :req.user,
-      users  : data
+      users  : data,
+      post  :req.post,
+      posts  : data,
     });
   });
 });
