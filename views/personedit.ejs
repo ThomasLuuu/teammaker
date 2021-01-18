@@ -1,0 +1,43 @@
+<% include ./header %>
+
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mb-3">
+        <i class="fas fa-user-plus"></i> Let change your profile here ( ͡° ͜ʖ ͡°)
+      </h1>
+      <% include ./partials/messages %>
+      <form action="/personedit/<%= user.id%> " method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="name" id="name" name="name class="form-control" placeholder="Enter your display name"
+            value="<%= user.name %>" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter your class time"
+            value="<%= user.email %>" />
+        </div>
+        <div class="form-group">
+          <label for="avata">Avata photo</label>
+          <input type="avata" id="avata" name="avata" class="form-control" placeholder="Enter your avata's image link"
+            value="<%= user.avata %>" />
+        </div>    
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control"
+            placeholder="Do you want to change your password?" value="<%= user.password %>" />
+        </div>
+        <div class="form-group">
+          <label for="password2"> Re-enter password</label>
+          <input type="password" id="password2" name="password2" class="form-control"
+            placeholder="Please enter your new password again " 
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Confirm it (▀̿Ĺ̯▀̿ ̿)
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<% include ./footer %>
