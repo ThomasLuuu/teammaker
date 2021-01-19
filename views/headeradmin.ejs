@@ -1,0 +1,90 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Home Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Action
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/addproject/<%= user.id%>" class="dropdown-item">Adding Project</a>
+            <a href="/userdisplay" class="dropdown-item">Edit User</a>
+            <div class="dropdown-divider"></div>
+            <a href="/users/logout"  class="dropdown-item">Logout</a>
+  
+          </div>
+        </li>
+  
+      </ul>
+      <form action="search/keyword" method="GET" class="form-inline my-2 my-lg-0">
+        <label for="keyword"></label>
+        <input name="keyword" class="form-control mr-sm-2" id="keyword" type="text" placeholder="Search User name"
+          aria-label="Search">
+        <input class="btn btn-outline-success my-2 my-sm-0" type="submit"></input>
+      </form>
+    </div>
+</nav> -->
+<link rel="stylesheet" href="/css/navbar.css">
+
+<div class="accordion">
+  <div class="logo"><i class="fa fa-align-justify" style="color: #da3838;" onclick="window.location='/dashboardadmin'"></i>
+    <div style="color: #252527;">Project Teammaker</div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-1" checked="checked" /><label
+      for="section-1"><span>Pages</span></label>
+    <div class="content">
+      <ul>
+        </li>
+        <li><i class="fa fa-share"></i><span onclick="window.location='/personedit/<%= user.id%>'">Profile setting</span></li>
+        <li><i class="fa fa-share"></i><span onclick="window.location='/userdisplay'">User managment</span></li>
+        <li><i class="fa fa-list"></i><span onclick="window.location='/'">List of Favorites</span></li>
+        <li><i class="fa fa-archive"></i><span onclick="window.location='/users/logout'">Logout</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-2" value="toggle" /><label for="section-2">
+      <span>Usage</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-cog"></i><span>System</span></li>
+        <li><i class="fa fa-group"></i><span>Users </span></li>
+        <li><i class="fa fa-sitemap"></i><span>Visitation</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-3" value="toggle" /><label for="section-3">
+      <span>Scroller</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-4" value="toggle" /><label for="section-4">
+      <span>Contact us</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-instagram"></i><span>Instagram</span>
+        </li>
+        <li><i class="fa fa-twitter"></i><span>Twitter</span></li>
+        <li><i class="fa fa-google-plus-square"></i><span>Google</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>

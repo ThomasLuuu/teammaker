@@ -338,7 +338,7 @@ router.post('/cmt/:id/:idpost', (req, res) => {
                       'success_msg',
                       'Comment'
                     );
-                    res.redirect('/dashboard');
+                    res.redirect("/detail/" +postid[0] );
                   })
                 
                   
