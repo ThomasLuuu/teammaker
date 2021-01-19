@@ -1,0 +1,67 @@
+<style>
+    .card {
+        border-radius: 4px;
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+        transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+        padding: 14px 80px 10px 20px;
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    }
+</style>
+
+<link rel="stylesheet" href="/css/app.css">
+<% include ./header %>
+
+<div class="main">
+    <div class="navbar" style="background-color: white; border-bottom: 5px outset;">
+        <h1 class="title">
+            List Of Favorite Projects
+        </h1>
+        <div class="dropdown" style="z-index: 1; margin-right: 10px;">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Adjust view
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Card view</a></li>
+                <li><a href="#">List view</a></li>
+                <li><a href="#">Recent activity</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-3" style="padding-bottom: 40px;">
+            <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color:#da3838;">
+                <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: #da3838;">
+                    <h5 class="card-title">Sample title</h5>
+                    <p class="card-text">Sample Creator</p>
+                    <p class="card-text">Sample Course</p>
+                    <p class="card-text">Sample Classtime</p>
+                    <a href="/detail/<%= post.id%> " class="btn btn-danger"
+                        style="width: 75%; margin-bottom: 10px;">Detail</a>
+                    <a href="/" class="btn btn-secondary" style="width: 75%;">Remove from list</a>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- <% posts.forEach(function (post) {%>
+        <div class="col-md-3" style="padding-bottom: 40px;">
+            <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color:#da3838;">
+                <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: #da3838;">
+                    <h5 class="card-title"><%= post.name %></h5>
+                    <p class="card-text"><%= post.creator %></p>
+                    <p class="card-text"><%= post.course   %></p>
+                    <p class="card-text"><%= post.classtime  %></p>
+                    <a href="/detail/<%= post.id%> " class="btn btn-danger"
+                        style="width: 75%; margin-bottom: 10px;">Detail</a>
+                    <a href="/" class="btn btn-secondary" style="width: 75%;">Remove from list</a>
+                </div>
+            </div>
+        </div>
+        <%}) %> -->
+    </div>
+</div>

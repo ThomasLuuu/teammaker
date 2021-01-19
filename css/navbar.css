@@ -1,18 +1,23 @@
 @import "compass/css3";
-  @import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700);
-  @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css);
 
   .accordion {
-    color: #fff;
+    color: #252527;
     width: 200px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #e6e6e6;
     overflow-x: hidden;
     padding-top: 20px;
     height: 100%;
+    border-right: 5px outset;
+  }
+
+  li:hover {
+    color: #f0000d;
   }
 
   .accordion .section {
@@ -23,14 +28,16 @@
     display: none;
   }
 
+  /* Selected tab color */
   .accordion .section input[type='radio']:checked+label {
-    background: #363636;
+    background: #bbb8b5;
   }
 
+  /* Checked label first indent highlight */
   .accordion .section input[type='radio']:checked+label:before {
     content: " ";
     position: absolute;
-    border-left: 3px solid #21ccfc;
+    border-left: 3px solid #252527;
     height: 100%;
     left: 0;
   }
@@ -42,12 +49,13 @@
     overflow-y: auto;
   }
 
+  /* Label color  */
   .accordion .section label {
     position: relative;
     cursor: pointer;
     padding: 10px 20px;
     display: table;
-    background: #222;
+    background: #da3838;
     width: 100%;
     -webkit-transition: background 0.3s ease-in-out;
     -moz-transition: background 0.3s ease-in-out;
@@ -60,6 +68,7 @@
     user-select: none;
   }
 
+  /* Selected label top border color */
   .accordion .section label:before {
     content: " ";
     width: 100%;
@@ -67,11 +76,11 @@
     left: 0;
     top: 0;
     height: 1px;
-    border-top: 1px solid #363636;
+    border-top: 1px solid #d6bcaf;
   }
 
   .accordion .section label:hover {
-    background: #363636;
+    background: #d6bcaf;
   }
 
   .accordion .section label span a {
