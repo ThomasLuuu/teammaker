@@ -37,8 +37,8 @@
 
 
 <div class="accordion">
-  <div class="logo"><i class="fa fa-align-justify" onclick="window.location='/'"></i>
-    <div>Project Teammaker</div>
+  <div class="logo"><i class="fa fa-align-justify" style="color: #da3838;" onclick="window.location='/'"></i>
+    <div style="color: #252527;">Project Teammaker</div>
   </div>
   <div class="section"><input type="radio" name="accordion-1" id="section-1" checked="checked" /><label
       for="section-1"><span>Pages</span></label>
@@ -131,7 +131,7 @@
           <th scope="col">GPA</th>
           <th scope="col">Creator</th>
           <th scope="col">Requirement</th>
-          <th scope="col">Actions</th>
+          <!-- <th scope="col">Actions</th> -->
         </tr>
       </thead>
       <tbody>
@@ -142,14 +142,13 @@
           <td><%= post.GPA %></td>
           <td><%= post.creator %></td>
           <td><%= post.requirment %></td>
-          <td>
+          <!-- <td>
             <a href="/edits/<%= post.id%> " class="btn btn-danger">Edit</a>
             <a href="/deletepost/<%= post.id%> " class="btn btn-danger">Delete</a>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
-    <!-- <p class="status">Get your first look at Titanfall 2 single player running on a TITAN X at 4K 60FPS!</p> -->
     <img class="img-content" src="<%= post.photo %>" />
 
     <div class="action">
@@ -182,38 +181,32 @@
 
     <h1>Discussion</h1>
 
-  
-    <form class="mt-3" action="/cmt/<%=user.id%>/<%= post.id %>" method="POST"
-      <% include ./partials/messages %>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="form-group">
-            <input type="comment" id="comment" name="comment" class="form-control" placeholder="Comment"
-              value="comment" style="margin-left: 35px; width: 90%;" />
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"
-            style="margin-left: 35px; width: 90%;"><span>
-              Comment</span></button>
+
+    <form class="mt-3" action="/cmt/<%=user.id%>/<%= post.id %>" method="POST" <% include ./partials/messages %> <div
+      class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <input type="comment" id="comment" name="comment" class="form-control" placeholder="Comment" value="comment"
+            style="margin-left: 35px; width: 90%;" />
         </div>
       </div>
-    </form>
+      <div class="col-lg-12" style="border: 2px solid red;">
+        <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"
+          style="margin-left: 35px; width: 90%;"><span style="color: black;">
+            Comment</span></button>
+      </div>
+  </div>
+  </form>
 
-    <div style="border-top: 3px solid black; margin-top: 10px;">
-      <% comlists.forEach(function (comlist) {%>
-        <h3 style="color: black; padding-right: 1.5cm; font-weight: 200;">
-          <%= comlist.studentname %>
-        </h3>
-      <p id="para" style="color: black;">
-        <%= comlist.comment %>
-      </p>
-      <%}) %>
-
-    </div>
-
-
-
+  <div style="border-top: 3px solid black; margin-top: 10px;">
+    <% comlists.forEach(function (comlist) {%>
+    <h3 style="color: black; padding-right: 1.5cm; font-weight: 200;">
+      <%= comlist.studentname %>
+    </h3>
+    <p id="para" style="color: black;">
+      <%= comlist.comment %>
+    </p>
+    <%}) %>
   </div>
 </div>
-
+</div>
