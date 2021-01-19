@@ -44,7 +44,7 @@
       for="section-1"><span>Pages</span></label>
     <div class="content">
       <ul>
-        <li><i class="fa fa-inbox"></i><span onclick="window.location='/addproject'">Adding Project</span>
+        <li><i class="fa fa-inbox"></i><span onclick="window.location='/addproject/<%=user.id%>'">Adding Project</span>
         </li>
         <li><i class="fa fa-archive"></i><span onclick="window.location='/users/logout'">Logout</span></li>
       </ul>
@@ -152,7 +152,7 @@
     <!-- <p class="status">Get your first look at Titanfall 2 single player running on a TITAN X at 4K 60FPS!</p> -->
     <img class="img-content" src="<%= post.photo %>" />
 
-    <!-- <div class="action">
+    <div class="action">
       <div class="like">
         <a href="#">
           <img
@@ -178,35 +178,42 @@
         </a>
       </div>
 
-    </div> -->
+    </div>
 
     <h1>Discussion</h1>
 
-    <div class="comment">
-      <input id="example" type="text" name="Ntext" size="20" placeholder="Add a comment" style="width: 90%;">
-      <a href="" class="btn btn-danger" id="sent" type="submit" >Send</a>
-      <!-- <input id="sent" type="submit" value="Send"> -->
-
-    </div>
+  
+    <form class="mt-3" action="/cmt/<%=user.id%>/<%= post.id %>" method="POST"
+      <% include ./partials/messages %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <input type="comment" id="comment" name="comment" class="form-control" placeholder="Comment"
+              value="comment" style="margin-left: 35px; width: 90%;" />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"
+            style="margin-left: 35px; width: 90%;"><span>
+              Comment</span></button>
+        </div>
+      </div>
+    </form>
 
     <div style="border-top: 3px solid black; margin-top: 10px;">
+      <% comlists.forEach(function (comlist) {%>
+        <h3 style="color: black; padding-right: 1.5cm; font-weight: 200;">
+          <%= comlist.studentname %>
+        </h3>
       <p id="para" style="color: black;">
+        <%= comlist.comment %>
       </p>
+      <%}) %>
+
     </div>
+
+
 
   </div>
 </div>
 
-<script>
-  window.onclick = function (e) {
-    var a = [];
-    var id = e.target.id;
-    if (id === 'sent') {
-      var txtbox = document.getElementById('example');
-      var txt = txtbox.value;
-      $("#para").append(txt + '<br>');
-      a.push(txt);
-      $(txtbox).val('');
-    }
-  }
-</script>
