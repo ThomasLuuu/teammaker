@@ -8,6 +8,9 @@ const ComlistSchema = new mongoose.Schema({
     comment:{
         type: String,
     },
+    studentname:{
+        type: String,
+    },
     post:{
         type: String,
     },

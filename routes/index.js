@@ -67,14 +67,21 @@ router.get('/userdisplay',authRole("admin"), ensureAuthenticated,(req, res)=>{
     });
   });
 });
+
 //detail page of products
 router.get('/detail/:id',ensureAuthenticated ,(req,res) =>{
-  Post.findById(req.params.id, function(err, post){
-    res.render('projectdetail', {
-      post:post
-
-    });
-  });
+  Comlist.find({comment: {$exists: true}, post : req.params.id}, function(err, data) {
+    Post.findById(req.params.id,function(err, post) {
+      res.render('projectdetail',{
+        post: post,
+        user: req.user,
+        comlist: req.comlist,
+        comlists: data,
+      })
+      
+    })
+    
+  })
 });
 // Load add project form
 router.get('/addproject/:id', ensureAuthenticated,(req, res) =>
@@ -292,39 +299,60 @@ router.get('/addfavlist/:id/:idpost', ensureAuthenticated, (req, res)=>{
       })
   }
   )
-
-//Comment function
-router.get('/cmt/:id/:idpost', ensureAuthenticated, (req, res)=>{
-  User.findById(req.params.id, function(err, user){
-    Post.findById(req.params.idpost, function(err,post){
-      Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postlocation){
-        User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-          var commentor = result.map(({email})=>email)
-          var postfind = postlocation.map(({_id})=>_id)
-          const NewComlist = new Comlist({
-            post : postfind[0],
-            account : commentor[0],
-            comment,
-          })
-          NewComlist.save()
-          .then(fav=>{
-            req.flash(
-              'success_msg',
-              'you commented'
-            );
-            res.redirect('/dashboard');
-          })
-        })
-      })
-
-       
-    })
-  })
-})
-
-
-  console.log("added");
 });
+//Comment function
+router.post('/cmt/:id/:idpost', (req, res) => {
+  User.findById(req.params.id, function(err, user){
+    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+      User.find({_id: req.params.id}).select('-_id name').exec(function(err, resultname) {
+        Post.findById(req.params.idpost, function(err, post) {
+          Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postlocation){
+            var commentor = result.map(({email})=>email)
+            var nameadd = resultname.map(({name})=>name)
+            var postid = postlocation.map(({_id})=>_id)
+            const {comment, post, account, studentname } = req.body;
+            let errors = [];
+            if ( !comment) {
+              errors.push({ msg: 'Please enter all fields' });
+            }
+            if (errors.length > 0) {
+              res.render('projectdetail', {
+                comment,
+                post,
+                account,
+                studentname,
+              });
+            } else {
+                  const newComlist = new Comlist({
+                    comment,
+                    post: postid[0],
+                    studentname: nameadd[0],
+                    account : commentor[0],
+                  });
+          
+                
+                  newComlist
+                  .save()
+                  .then(com => {
+                    req.flash(
+                      'success_msg',
+                      'Comment'
+                    );
+                    res.redirect('/dashboard');
+                  })
+                
+                  
+              
+            }
+          })
+          
+        })
+        
+      })
+    }) 
+  })
+});
+
 //fiding project TEST
 
 router.get('/search/keyword', function(req, res){
@@ -342,7 +370,6 @@ router.get('/search/keyword', function(req, res){
 
 router.post('/addproject/:id', (req, res) => {
   User.findById(req.params.id, function(err, user){
-    var userids = "ObjectId"+'"'+req.params.id+'"'+")";
     User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
       var postor = result.map(({email})=>email)
       const { course, classtime, GPA, creator, requirement, photo } = req.body;
