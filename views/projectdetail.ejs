@@ -1,6 +1,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<link rel="stylesheet" href="/css/projectdetail.css">
+<link rel="stylesheet" href="/css/navbar.css">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">Home Page</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,30 +32,180 @@
       <input class="btn btn-outline-success my-2 my-sm-0" type="submit"></input>
     </form>
   </div>
-</nav>
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Course</th>
-      <th scope="col">Class</th>
-      <th scope="col">GPA</th>
-      <th scope="col">Creator</th>
-      <th scope="col">Requirement</th>
-    </tr>
-  </thead>
-  <tbody>
+</nav> -->
 
-    <tr>
-      <td><%= post.course %></td>
-      <td><%= post.classtime %></td>
-      <td><%= post.GPA %></td>
-      <td><%= post.creator %></td>
-      <td><%= post.requirment %></td>
-    </tr>
-  </tbody>
-</table>
-<a href="/edits/<%= post.id%> " class="btn btn-primary">Edit</a>
-<a href="/deletepost/<%= post.id%> " class="btn btn-primary">Delete</a>
-<h3>The Project Images</h3>
-<img src="<%= post.photo %>" />
-<% include ./footer %>
+
+
+<div class="accordion">
+  <div class="logo"><i class="fa fa-align-justify" onclick="window.location='/'"></i>
+    <div>Project Teammaker</div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-1" checked="checked" /><label
+      for="section-1"><span>Pages</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-inbox"></i><span onclick="window.location='/addproject'">Adding Project</span>
+        </li>
+        <li><i class="fa fa-archive"></i><span onclick="window.location='/users/logout'">Logout</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-2" value="toggle" /><label for="section-2">
+      <span>Usage</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-cog"></i><span>System</span></li>
+        <li><i class="fa fa-group"></i><span>Users </span></li>
+        <li><i class="fa fa-sitemap"></i><span>Visitation</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-3" value="toggle" /><label for="section-3">
+      <span>Scroller</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section"><input type="radio" name="accordion-1" id="section-4" value="toggle" /><label for="section-4">
+      <span>Contact us</span></label>
+    <div class="content">
+      <ul>
+        <li><i class="fa fa-instagram"></i><span>Instagram</span>
+        </li>
+        <li><i class="fa fa-twitter"></i><span>Twitter</span></li>
+        <li><i class="fa fa-google-plus-square"></i><span>Google</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="main">
+  <!-- <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Course</th>
+        <th scope="col">Class</th>
+        <th scope="col">GPA</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Requirement</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td><%= post.course %></td>
+        <td><%= post.classtime %></td>
+        <td><%= post.GPA %></td>
+        <td><%= post.creator %></td>
+        <td><%= post.requirment %></td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/edits/<%= post.id%> " class="btn btn-primary">Edit</a>
+  <a href="/deletepost/<%= post.id%> " class="btn btn-primary">Delete</a>
+  <h3>The Project Images</h3>
+  <img src="<%= post.photo %>" /> -->
+  <div id="wrapper" style="border: 2px solid red; width: 80%; border-radius: 25px;">
+
+    <header class="cf">
+      <!-- <img src="http://2016.igem.org/wiki/images/e/e0/Uclascrolldown.png" class="arrow" /> -->
+      <h1>Project Details:
+      </h1>
+    </header>
+    <table class="table">
+      <thead class="thead">
+        <tr>
+          <th scope="col">Course</th>
+          <th scope="col">Class</th>
+          <th scope="col">GPA</th>
+          <th scope="col">Creator</th>
+          <th scope="col">Requirement</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><%= post.course %></td>
+          <td><%= post.classtime %></td>
+          <td><%= post.GPA %></td>
+          <td><%= post.creator %></td>
+          <td><%= post.requirment %></td>
+          <td>
+            <a href="/edits/<%= post.id%> " class="btn btn-danger">Edit</a>
+            <a href="/deletepost/<%= post.id%> " class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <p class="status">Get your first look at Titanfall 2 single player running on a TITAN X at 4K 60FPS!</p> -->
+    <img class="img-content" src="<%= post.photo %>" />
+
+    <!-- <div class="action">
+      <div class="like">
+        <a href="#">
+          <img
+            src="https://1.bp.blogspot.com/-qns_lZPjg0I/VWY2dO1HN-I/AAAAAAAACVA/akLTMY7RJSk/s1600/Thumbs-up-facebook-icon-small.png"
+            alt="thumbs up" />
+          <p>Like</p>
+        </a>
+      </div>
+
+      <div class="comment">
+        <a href="#">
+          <img src="https://s0.wp.com/wp-content/themes/vip/facebook-groups/img/message_icon.png" />
+          <p>Comment</p>
+        </a>
+      </div>
+
+      <div class="share">
+        <a href="#">
+          <img src="http://download.seaicons.com/icons/icons8/windows-8/512/Arrows-Redo-icon.png" alt="" />
+          <p>
+            Share
+          </p>
+        </a>
+      </div>
+
+    </div> -->
+
+    <h1>Discussion</h1>
+
+    <div class="comment">
+      <input id="example" type="text" name="Ntext" size="20" placeholder="Add a comment" style="width: 90%;">
+      <input id="sent" type="submit" value="Send">
+
+    </div>
+
+    <div style="border-top: 3px solid black; margin-top: 10px;">
+      <p id="para" style="color: black;">
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  window.onclick = function (e) {
+    var a = [];
+    var id = e.target.id;
+    if (id === 'sent') {
+      var txtbox = document.getElementById('example');
+      var txt = txtbox.value;
+      $("#para").append(txt + '<br>');
+      a.push(txt);
+      $(txtbox).val('');
+    }
+  }
+</script>
