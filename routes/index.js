@@ -198,13 +198,23 @@ router.post('/personedit/:id', (req, res) => {
           user.email = req.body.email;
           user.avata = req.body.avata;
           let query = {_id:req.params.id}
-  
+          let comlist ={};
+          let query1 = {account: req.user.email}
+          comlist.avata = req.body.avata;
           User.update(query, user, function(err){
+
             if(err){
               console.log(err);
               return;
             }else{
-              res.redirect('/dashboard');
+              Comlist.updateMany(query1, comlist, function(err){
+                if(err){
+                  console.log(err);
+                  return;
+                }else{
+                  res.redirect('/dashboard')
+                }
+              })
             }
           });
         }
