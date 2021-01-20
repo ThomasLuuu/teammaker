@@ -34,66 +34,10 @@
   </div>
 </nav> -->
 
+<% include ./header %>
 
 
-<div class="accordion">
-  <div class="logo"><i class="fa fa-align-justify" style="color: #da3838;" onclick="window.location='/'"></i>
-    <div style="color: #252527;">Project Teammaker</div>
-  </div>
-  <div class="avatar">
-    <a href="/">
-      <img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png" alt="Profile Image">
-    </a>
-  </div>
-  <div class="section"><input type="radio" name="accordion-1" id="section-1" checked="checked" /><label
-      for="section-1"><span>Pages</span></label>
-    <div class="content">
-      <ul>
-        <li><i class="fa fa-inbox"></i><span onclick="window.location='/addproject/<%=user.id%>'">Adding Project</span>
-        </li>
-        <li><i class="fa fa-archive"></i><span onclick="window.location='/users/logout'">Logout</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="section"><input type="radio" name="accordion-1" id="section-2" value="toggle" /><label for="section-2">
-      <span>Usage</span></label>
-    <div class="content">
-      <ul>
-        <li><i class="fa fa-cog"></i><span>System</span></li>
-        <li><i class="fa fa-group"></i><span>Users </span></li>
-        <li><i class="fa fa-sitemap"></i><span>Visitation</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="section"><input type="radio" name="accordion-1" id="section-3" value="toggle" /><label for="section-3">
-      <span>Scroller</span></label>
-    <div class="content">
-      <ul>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-        <li><i class="fa fa-coffee"></i><span>Figuring out smth</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="section"><input type="radio" name="accordion-1" id="section-4" value="toggle" /><label for="section-4">
-      <span>Contact us</span></label>
-    <div class="content">
-      <ul>
-        <li><i class="fa fa-instagram"></i><span>Instagram</span>
-        </li>
-        <li><i class="fa fa-twitter"></i><span>Twitter</span></li>
-        <li><i class="fa fa-google-plus-square"></i><span>Google</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
-</div>
+
 
 <div class="main">
   <!-- <table class="table">
@@ -191,7 +135,7 @@
       class="row">
       <div class="col-lg-12">
         <div class="form-group">
-          <input type="comment" id="comment" name="comment" class="form-control" placeholder="Comment" value="comment"
+          <input type="comment" id="comment" name="comment" class="form-control" placeholder="Comment" value=""
             style="margin-left: 35px; width: 90%;" />
         </div>
       </div>
@@ -207,7 +151,7 @@
     <% comlists.forEach(function (comlist) {%>
     <div class="comment">
       <div class="row">
-        <img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png" alt="Profile">
+        <img src="<%=comlist.avata%>" alt="Profile">
         <h3>
           <%= comlist.studentname %>
         </h3>

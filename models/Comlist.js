@@ -14,6 +14,9 @@ const ComlistSchema = new mongoose.Schema({
     post:{
         type: String,
     },
+    avata:{
+        type: String,
+    },
 });
 
 const Comlist = mongoose.model('Comlist', ComlistSchema);

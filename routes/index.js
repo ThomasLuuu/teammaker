@@ -306,13 +306,14 @@ router.get('/fav/:id', ensureAuthenticated, personalcheck(), (req,res)=>{
 router.post('/cmt/:id/:idpost', (req, res) => {
   User.findById(req.params.id, function(err, user){
     User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-      User.find({_id: req.params.id}).select('-_id name').exec(function(err, resultname) {
+      User.find({_id: req.params.id}).select('-_id name avata').exec(function(err, resultname) {
         Post.findById(req.params.idpost, function(err, post) {
           Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postlocation){
             var commentor = result.map(({email})=>email)
             var nameadd = resultname.map(({name})=>name)
             var postid = postlocation.map(({_id})=>_id)
-            const {comment, post, account, studentname } = req.body;
+            var ava = resultname.map(({avata})=>avata)
+            const {comment, post, account, studentname, avata } = req.body;
             let errors = [];
             if ( !comment) {
               errors.push({ msg: 'Please enter all fields' });
@@ -327,6 +328,7 @@ router.post('/cmt/:id/:idpost', (req, res) => {
             } else {
                   const newComlist = new Comlist({
                     comment,
+                    avata: ava[0],
                     post: postid[0],
                     studentname: nameadd[0],
                     account : commentor[0],
