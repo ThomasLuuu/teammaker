@@ -376,7 +376,7 @@ router.post('/addproject/:id', (req, res) => {
       var postor = result.map(({email})=>email)
       const { course, classtime, GPA, creator, requirement, photo } = req.body;
       let errors = [];
-      if ( !course || !classtime || !GPA || !requirement || !photo) {
+      if ( !course || !classtime || !GPA || !requirement ) {
         errors.push({ msg: 'Please enter all fields' });
       }
       if (errors.length > 0) {
