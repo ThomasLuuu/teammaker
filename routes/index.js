@@ -178,26 +178,13 @@ router.post('/personedit/:id', (req, res) => {
     errors.push({msg: 'USE RMIT EMAIL ONLY'})
   }
 
-  if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
-    console.log("2")    
-
-  }
-
-
-  if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
-    console.log("3")    
-
-  }
+  
   if (errors.length > 0) {
     res.render('register', {
       errors,
       name,
       email,
       avata,
-      password,
-      password2
     });
   } else {
        Banlist.findOne({ banemail : email }).then(user => {
@@ -210,22 +197,15 @@ router.post('/personedit/:id', (req, res) => {
           user.name = req.body.name;
           user.email = req.body.email;
           user.avata = req.body.avata;
-          user.password = req.body.password;
           let query = {_id:req.params.id}
   
-          bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-              if (err) throw err;
-              user.password = hash;
-              User.update(query, user, function(err){
-                if(err){
-                  console.log(err);
-                  return;
-                }else{
-                  res.redirect('/dashboard');
-                }
-              });
-            });
+          User.update(query, user, function(err){
+            if(err){
+              console.log(err);
+              return;
+            }else{
+              res.redirect('/dashboard');
+            }
           });
         }
       }) 
@@ -277,12 +257,18 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
 router.get('/addfavlist/:id/:idpost', ensureAuthenticated, (req, res)=>{
   User.findById(req.params.id, function(err, user){
     Post.findById(req.params.idpost, function(err, post){
-      Post.find({_id: req.params.idpost}).select('_id').exec(function(err, postadd){
-        User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
-          var liker = result.map(({email})=>email)
+      Post.find({_id: req.params.idpost}).select('_id  creator classtime course').exec(function(err, postadd){
+        User.find({_id: req.params.id}).select('_id').exec(function(err, result){
+          var liker = result.map(({_id})=> (_id))
+          var namepost = postadd.map(({creator})=>creator)
+          var datepost = postadd.map(({classtime})=>classtime)
+          var coursepost= postadd.map(({course})=>course)
           var poster = postadd.map(({_id})=>_id)
           const newFavlist = new Favlist({
             account: liker[0],
+            course: coursepost[0],
+            date: datepost[0],
+            name: namepost[0],
             favpost: poster[0],
           })
           newFavlist.save()
@@ -300,6 +286,22 @@ router.get('/addfavlist/:id/:idpost', ensureAuthenticated, (req, res)=>{
   }
   )
 });
+//display fav
+router.get('/fav/:id', ensureAuthenticated, personalcheck(), (req,res)=>{
+  Favlist.find({account:req.params.id},function (err, data) {
+    Post.find({_id: req.params.id},function(err, post) {
+      res.render('favoritelist.ejs',{
+        favlist: req.favlist,
+        favlists: data,
+        user: req.user,
+        post: req.post,
+        posts: post,
+      })
+      
+    })
+    
+  })
+})
 //Comment function
 router.post('/cmt/:id/:idpost', (req, res) => {
   User.findById(req.params.id, function(err, user){

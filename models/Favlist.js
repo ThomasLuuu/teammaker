@@ -7,7 +7,16 @@ const FavlistSchema = new mongoose.Schema({
   },
   account:{
       type: String,
-  }
+  },
+  name:{
+    type: String,
+  },
+  course:{
+    type: String,
+  },
+  date:{
+    type:String,
+  },
 });
 
 const Favlist = mongoose.model('Favlist', FavlistSchema);

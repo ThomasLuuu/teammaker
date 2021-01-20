@@ -39,9 +39,13 @@
   </div>
   <div class="avatar">
     <a href="/">
-      <img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png" alt="Profile Image">
+      <img src="<%= user.avata %>" alt="Profile Image">
     </a>
+    
   </div>
+  <p class="name">
+    <%= user.name%>
+  </p>
   <div class="section"><input type="radio" name="accordion-1" id="section-1" checked="checked" /><label
       for="section-1"><span>Pages</span></label>
     <div class="content">
@@ -50,7 +54,7 @@
         </li>
         <li><i class="fa fa-share"></i><span onclick="window.location='/personedit/<%= user.id%>'">Profile
             setting</span></li>
-        <li><i class="fa fa-list"></i><span onclick="window.location='/'">List of Favorites</span></li>
+        <li><i class="fa fa-list"></i><span onclick="window.location='/fav/<%= user.id%>'">List of Favorites</span></li>
         <li><i class="fa fa-archive"></i><span onclick="window.location='/users/logout'">Logout</span></li>
       </ul>
     </div>

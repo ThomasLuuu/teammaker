@@ -34,34 +34,20 @@
     </div>
 
     <div class="container">
+        
+        <% favlists.forEach(function (favlist) {%>
         <div class="col-md-3" style="padding-bottom: 40px;">
             <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color:#da3838;">
                 <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: #da3838;">
-                    <h5 class="card-title">Sample title</h5>
-                    <p class="card-text">Sample Creator</p>
-                    <p class="card-text">Sample Course</p>
-                    <p class="card-text">Sample Classtime</p>
-                    <a href="/detail/<%= post.id%> " class="btn btn-danger"
+                    <h5 class="card-title"><%= favlist.name%></h5>
+                    <p class="card-text"><%=favlist. course%></p>
+                    <p class="card-text"><%=favlist.date%></p>
+                    <a href="/ " class="btn btn-danger"
                         style="width: 75%; margin-bottom: 10px;">Detail</a>
                     <a href="/" class="btn btn-secondary" style="width: 75%;">Remove from list</a>
                 </div>
             </div>
         </div>
- 
-        <!-- <% posts.forEach(function (post) {%>
-        <div class="col-md-3" style="padding-bottom: 40px;">
-            <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color:#da3838;">
-                <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: #da3838;">
-                    <h5 class="card-title"><%= post.name %></h5>
-                    <p class="card-text"><%= post.creator %></p>
-                    <p class="card-text"><%= post.course   %></p>
-                    <p class="card-text"><%= post.classtime  %></p>
-                    <a href="/detail/<%= post.id%> " class="btn btn-danger"
-                        style="width: 75%; margin-bottom: 10px;">Detail</a>
-                    <a href="/" class="btn btn-secondary" style="width: 75%;">Remove from list</a>
-                </div>
-            </div>
-        </div>
-        <%}) %> -->
+        <%}) %>
     </div>
 </div>

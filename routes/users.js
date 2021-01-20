@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
     errors.push({ msg: 'Please enter all fields' });
   }
 
-  if (req.body.email.indexOf("@rmit")>=1){
+  if (req.body.email.indexOf("@rmit.edu.vn" || "@rmit.edu.au")>=1){
       console.log("this is rmit email")    
   }else{
     errors.push({msg: 'rmit staff and student only!'})
