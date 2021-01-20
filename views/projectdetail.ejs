@@ -40,6 +40,11 @@
   <div class="logo"><i class="fa fa-align-justify" style="color: #da3838;" onclick="window.location='/'"></i>
     <div style="color: #252527;">Project Teammaker</div>
   </div>
+  <div class="avatar">
+    <a href="/">
+      <img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png" alt="Profile Image">
+    </a>
+  </div>
   <div class="section"><input type="radio" name="accordion-1" id="section-1" checked="checked" /><label
       for="section-1"><span>Pages</span></label>
     <div class="content">
@@ -151,7 +156,7 @@
     </table>
     <img class="img-content" src="<%= post.photo %>" />
 
-    <div class="action">
+    <!-- <div class="action">
       <div class="like">
         <a href="#">
           <img
@@ -177,7 +182,7 @@
         </a>
       </div>
 
-    </div>
+    </div> -->
 
     <h1>Discussion</h1>
 
@@ -190,23 +195,30 @@
             style="margin-left: 35px; width: 90%;" />
         </div>
       </div>
-      <div class="col-lg-12" style="border: 2px solid red;">
-        <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"
-          style="margin-left: 35px; width: 90%;"><span style="color: black;">
-            Comment</span></button>
+      <div class="col-lg-12">
+        <button type="submit" class="btn btn-md btn-block btn-secondary"
+          style="margin: auto; width: 15%; border-radius: 20%; height: 50px;"><span style="color: black;">
+          Add comment</span></button>
       </div>
   </div>
   </form>
 
   <div style="border-top: 3px solid black; margin-top: 10px;">
     <% comlists.forEach(function (comlist) {%>
-    <h3 style="color: black; padding-right: 1.5cm; font-weight: 200;">
-      <%= comlist.studentname %>
-    </h3>
-    <p id="para" style="color: black;">
-      <%= comlist.comment %>
-    </p>
+    <div class="comment">
+      <div class="row">
+        <img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png" alt="Profile">
+        <h3>
+          <%= comlist.studentname %>
+        </h3>
+      </div>
+      <p id="para" style="color: black;">
+        <%= comlist.comment %>
+      </p>
+    </div>
     <%}) %>
+
+
   </div>
 </div>
 </div>

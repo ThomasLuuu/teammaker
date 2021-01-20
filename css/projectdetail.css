@@ -140,3 +140,27 @@ tr td:hover {
     background-color: #695a55;
     color: whitesmoke;
 }
+
+.comment {
+    border-bottom: 1px groove #C8C8C8;
+}
+
+.comment img {
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 25px;
+    height: 50px;
+    border-radius: 50%;
+    width: 50px;
+}
+
+.comment h3 {
+    color: red; 
+    padding-right: 1.5cm; 
+    font-weight: 100;
+}
+
+.comment p {
+    margin-left: 40px;
+    font-size: 18px;
+}
