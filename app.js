@@ -7,10 +7,11 @@ const socketio = require('socket.io');
 const session = require('express-session');
 const vendors = require('vendors');
 const app = express();
-const http = require('http').Server(app);
-
+const server = require('http').createServer(app);
+// const http = require('http').Server(app);
 const bodyParser = require('body-parser');
-const io = require('socket.io')(http);
+// const io = require('socket.io')(http);
+var io = require('socket.io').listen(server);
 // Passport Config
 require('./config/passport')(passport);
 
@@ -96,7 +97,10 @@ const PORT = process.env.PORT ||  5000;
   
 // })
 
-const server = http.listen(PORT, function() {
-  console.log('listen on 5000')
+// const server = http.listen(PORT, function() {
+//   console.log('listen on 5000')
   
-})
+// })
+
+
+server.listen(PORT);

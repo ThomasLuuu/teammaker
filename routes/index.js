@@ -437,4 +437,10 @@ router.get('/chatme', ensureAuthenticated,(req, res) =>
   res.render('chat.ejs')
 );
 
+
+router.get('/profile/:id',ensureAuthenticated,(req, res)=>{
+  res.render('userprofile.ejs',{
+    user: req.user,
+  })
+})
 module.exports = router;
