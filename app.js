@@ -3,18 +3,33 @@ const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
-const socket = require('socket.io');
+const socketio = require('socket.io');
 const session = require('express-session');
 const vendors = require('vendors');
 const app = express();
-// const http = require('http').Server(app);
+const http = require('http').Server(app);
 
 const bodyParser = require('body-parser');
-
+const io = require('socket.io')(http);
 // Passport Config
 require('./config/passport')(passport);
 
+//Run connect IO
+io.sockets.on('connection', function(socket) {
+  socket.on('username', function(username) {
+      socket.username = username;
+      io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
+  });
 
+  socket.on('disconnect', function(username) {
+      io.emit('is_online', '🔴 <i>' + socket.username + ' left the chat..</i>');
+  })
+
+  socket.on('chat_message', function(message) {
+      io.emit('chat_message', '<strong>' + socket.username + '</strong>: ' + message);
+  });
+
+});
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -54,9 +69,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 //Body Parser
-app.use(express.static('public'));
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 // Connect flash
 app.use(flash());
 
@@ -69,29 +84,10 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-
-//
 app.get('/chatme', function(req, res) {
-  res.render('index');
+  res.render('chat.ejs');
   
 })
-//Get username and roomname from form and pass it to room
-app.post('/room', (req, res) => {
-  roomname = req.body.roomname;
-  username = req.body.username;
-  res.redirect(`/room?username=${username}&roomname=${roomname}`)
-})
-
-//Rooms
-app.get('/room', (req, res)=>{
-  res.render('room')
-})
-
-
-
-
-
-
 app.use('/users', require('./routes/users.js'));
 app.use('/', require('./routes/index.js'));
 const PORT = process.env.PORT ||  5000;
@@ -100,9 +96,7 @@ const PORT = process.env.PORT ||  5000;
   
 // })
 
-const server = app.listen(PORT, () => {
-  console.log(`Server Running on ${PORT}`)
+const server = http.listen(PORT, function() {
+  console.log('listen on 5000')
+  
 })
-
-const io = socket(server);
-require('./utils/socket')(io);
