@@ -25,6 +25,9 @@ socket.emit('joined-user', {
     roomname: roomname
 })
 
+socket.emit('left-user',{
+    username:username,
+})
 //Sending data when user clicks send
 send.addEventListener('click', () =>{
     socket.emit('chat', {
@@ -43,6 +46,10 @@ message.addEventListener('keypress', () => {
 //Displaying if new user has joined the room
 socket.on('joined-user', (data)=>{
     output.innerHTML += '<p>--> <strong><em>' + data.username + ' </strong>has Joined the Room</em></p>';
+})
+//Displaying if new user has leftthe room
+socket.on('left-user', (data)=>{
+    output.innerHTML += '<p>--> <strong><em>' + data.username + ' </strong>has left the Room</em></p>';
 })
 
 //Displaying the message sent from user
