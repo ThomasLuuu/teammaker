@@ -73,7 +73,7 @@ app.use(function(req, res, next) {
 //Render index page
 app.get('/chat', (req, res) => {
   res.render('index',{
-    user: user
+    user: req.user
   })
 })
 
