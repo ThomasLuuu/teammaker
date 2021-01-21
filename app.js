@@ -15,6 +15,7 @@ require('./config/passport')(passport);
 
 // DB Config
 const db = require('./config/keys').mongoURI;
+const User = require('./models/User');
 
 // Connect to MongoDB
 mongoose
@@ -70,7 +71,9 @@ app.use(function(req, res, next) {
 
 //Render index page
 app.get('/chat', (req, res) => {
-  res.render('index')
+  res.render('index',{
+    user: req.user
+  })
 })
 
 //Get username and roomname from form and pass it to room
