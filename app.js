@@ -72,7 +72,9 @@ app.use(function(req, res, next) {
 
 //Render index page
 app.get('/chat', (req, res) => {
-  res.render('index')
+  res.render('index',{
+    
+  })
 })
 
 //Get username and roomname from form and pass it to room

@@ -65,3 +65,9 @@ socket.on('online-users', (data) =>{
         users.innerHTML += `<p>${user}</p>`
     });
 })
+
+//leaving
+socket.on('disconect', (data)=>{
+    output.innerHTML += '<p>--> <strong><em>' + data.username + ' </strong>has left the Room</em></p>';
+
+})
