@@ -96,7 +96,7 @@ const PORT = process.env.PORT ||  5000;
   
 // })
 
-const server = http.listen(5000, function() {
+const server = http.listen(PORT, function() {
   console.log('listen on 5000')
   
 })
