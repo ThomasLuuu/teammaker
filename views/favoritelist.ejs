@@ -35,11 +35,11 @@
         </div>
         <%}) %> -->
 
-        <% posts.forEach(function (favlist) {%>
+        <% favlists.forEach(function (favlist) {%>
             <figure class="snip0056">
                 <figcaption>
                     <h2>Sample Student Name</h2>
-                    <p class="card-text"><%= favlist.name%></p>
+                    <p class="card-text"><%= favlist.name%></p> 
                     <p class="card-text"><%= favlist.date  %></p>
                     <div class="icons">
                         <a href="/detail/<%= post.id%> " class="btn btn-danger"

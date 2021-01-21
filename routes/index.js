@@ -308,8 +308,8 @@ router.get('/fav/:id', ensureAuthenticated, personalcheck(), (req,res)=>{
         favlist: req.favlist,
         favlists: data,
         user: req.user,
-        post: req.post,
-        posts: post,
+        post: post,
+        
       })
       
     })
