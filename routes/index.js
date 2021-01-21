@@ -18,7 +18,6 @@ const bodyParser = require('body-parser');
 const { db } = require('../models/Banlist');
 const { render } = require('ejs');
 const { query } = require('express');
-
 // Welcome Page
 router.use(bodyParser.json())
 router.get('/', forwardAuthenticated, (req, res)=>{
@@ -244,19 +243,24 @@ router.get('/banuser/:id',ensureAuthenticated, (req, res)=>{
   User.findById(req.params.id, function(err,user){
    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
      var banemailget = result.map(({email})=>email)
-    
-     
-     const newBanlist = new Banlist({
-        banemail: banemailget[0],
+     let deletepost = {creator : banemailget[0]} 
+     let deletecomt = {account : banemailget[0]}
+     Post.deleteMany(deletepost, function(err, del){
      })
-      newBanlist.save()
-     .then(user => {
-      req.flash(
-        'success_msg',
-        'ban sucessfully'
-        );
-      res.redirect('/dashboard');
-    })
+     Comlist.deleteMany(deletecomt, function(err, del){
+
+     })
+     const newBanlist = new Banlist({
+      banemail: banemailget[0],
+   })
+    newBanlist.save()
+   .then(user => {
+    req.flash(
+      'success_msg',
+      'ban sucessfully'
+      );
+    res.redirect('/dashboard');
+  })
    })
     
   }
@@ -428,5 +432,9 @@ router.post('/addproject/:id', (req, res) => {
     }) 
   })
 });
+
+router.get('/chatme', ensureAuthenticated,(req, res) =>
+  res.render('chat.ejs')
+);
 
 module.exports = router;

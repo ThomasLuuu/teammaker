@@ -3,13 +3,33 @@ const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
+const socketio = require('socket.io');
 const session = require('express-session');
 const vendors = require('vendors');
 const app = express();
+const http = require('http').Server(app);
+
 const bodyParser = require('body-parser');
+const io = require('socket.io')(http);
 // Passport Config
 require('./config/passport')(passport);
 
+//Run connect IO
+io.sockets.on('connection', function(socket) {
+  socket.on('username', function(username) {
+      socket.username = username;
+      io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
+  });
+
+  socket.on('disconnect', function(username) {
+      io.emit('is_online', '🔴 <i>' + socket.username + ' left the chat..</i>');
+  })
+
+  socket.on('chat_message', function(message) {
+      io.emit('chat_message', '<strong>' + socket.username + '</strong>: ' + message);
+  });
+
+});
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -64,10 +84,19 @@ app.use(function(req, res, next) {
 });
 
 // Routes
+app.get('/chatme', function(req, res) {
+  res.render('chat.ejs');
+  
+})
 app.use('/users', require('./routes/users.js'));
 app.use('/', require('./routes/index.js'));
-const PORT = process.env.PORT ||  5000;
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
-// app.listen(process.env.PORT, function() {
+// const PORT = process.env.PORT ||  5000;
+// app.listen(PORT, console.log(`Server started on port ${PORT}`));
+// // app.listen(process.env.PORT, function() {
   
-// })
+// // })
+
+const server = http.listen(5000, function() {
+  console.log('listen on 5000')
+  
+})
