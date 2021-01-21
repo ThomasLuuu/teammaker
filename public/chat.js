@@ -67,7 +67,7 @@ socket.on('online-users', (data) =>{
 })
 
 //leaving
-socket.on('disconect', (data)=>{
-    output.innerHTML += '<p>--> <strong><em>' + data.username + ' </strong>has left the Room</em></p>';
+// socket.on('disconect', (data)=>{
+//     output.innerHTML += '<p>--> <strong><em>' + data.username + ' </strong>has left the Room</em></p>';
 
-})
+// })
