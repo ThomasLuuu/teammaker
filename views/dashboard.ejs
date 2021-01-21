@@ -15,6 +15,7 @@
 </style>
 
 <link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/dashboard.css">
 <% include ./header %>
 
 <div class="main">
@@ -34,7 +35,7 @@
   </div>
 
   <div class="container">
-    <% posts.forEach(function (post) {%>
+    <!-- <% posts.forEach(function (post) {%>
     <div class="col-md-3" style="padding-bottom: 40px;">
       <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color:#da3838;">
         <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: #da3838;">
@@ -48,6 +49,23 @@
         </div>
       </div>
     </div>
+    <%}) %> -->
+
+    <% posts.forEach(function (post) {%>    
+      <figure class="snip0056">
+        <figcaption>
+          <h2>Sample Student Name</h2>
+          <p class="card-text"><%= post.creator %></p>
+          <p class="card-text"><%= post.classtime  %></p>
+          <div class="icons">
+            <a href="/detail/<%= post.id%> " class="btn btn-danger" style="width: 75%; margin-bottom: 10px;">Detail</a>
+            <a href="/addfavlist/<%= user.id%>/<%= post.id%>" class="btn btn-secondary" style="width: 75%;">Add to
+              favorite</a>
+          </div>
+        </figcaption><img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png"
+          alt="Profile picture" />
+        <div class="position"><%= post.course %></div>
+      </figure>
     <%}) %>
   </div>
 </div>

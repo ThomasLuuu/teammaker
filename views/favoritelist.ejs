@@ -1,20 +1,5 @@
-<style>
-    .card {
-        border-radius: 4px;
-        background: #fff;
-        box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-        transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
-        padding: 14px 80px 10px 20px;
-        cursor: pointer;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-    }
-</style>
-
 <link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/dashboard.css">
 <% include ./header %>
 
 <div class="main">
@@ -35,7 +20,7 @@
 
     <div class="container">
         
-        <% favlists.forEach(function (favlist) {%>
+        <!-- <% favlists.forEach(function (favlist) {%>
         <div class="col-md-3" style="padding-bottom: 40px;">
             <div class="card overlay" style="width: 18rem; border-radius: 1rem; border-color:#da3838;">
                 <div class="card-body" style="width: 18rem; border-radius: 1rem; border-color: #da3838;">
@@ -48,6 +33,25 @@
                 </div>
             </div>
         </div>
+        <%}) %> -->
+
+        <% posts.forEach(function (favlist) {%>
+            <figure class="snip0056">
+                <figcaption>
+                    <h2>Sample Student Name</h2>
+                    <p class="card-text"><%= favlist.name%></p>
+                    <p class="card-text"><%= favlist.date  %></p>
+                    <div class="icons">
+                        <a href="/detail/<%= post.id%> " class="btn btn-danger"
+                            style="width: 75%; margin-bottom: 10px;">Detail</a>
+                        <a href="/addfavlist/<%= user.id%>/<%= post.id%>" class="btn btn-secondary" style="width: 75%;">Remove
+                            from
+                            list</a>
+                    </div>
+                </figcaption><img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png"
+                    alt="Profile picture" />
+                <div class="position"><%= favlist.course %></div>
+            </figure>
         <%}) %>
     </div>
 </div>
