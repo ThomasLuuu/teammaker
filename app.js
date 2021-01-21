@@ -72,13 +72,11 @@ app.use(function(req, res, next) {
 
 //Render index page
 app.get('/chat', (req, res) => {
-  res.render('index',{
-    // user: req.user
-  })
+  res.render('index')
 })
 
 //Get username and roomname from form and pass it to room
-app.post('/room', ensureAuthenticated, (req, res) => {
+app.post('/room',  (req, res) => {
   roomname = req.body.roomname;
   username = req.body.username;
   res.redirect(`/room?username=${username}&roomname=${roomname}`)

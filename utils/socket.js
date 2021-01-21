@@ -1,5 +1,4 @@
 const {getUsers, users} = require('./getUsers');
-
 //Socket connection
 function socket(io) {
     io.on('connection', (socket) => {
