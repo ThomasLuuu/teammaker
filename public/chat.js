@@ -6,8 +6,8 @@ const roomMessage = document.querySelector('.room-message');
 const users = document.querySelector('.users');
 
 //Socket server URL
-const socket = io.connect('http://localhost:5000');
-// const socket = io.connect('https://team-making.herokuapp.com/');
+// const socket = io.connect('http://localhost:5000');
+const socket = io.connect('https://team-making.herokuapp.com/');
 
 //Fetch URL Params from URL
 const queryString = window.location.search;
@@ -62,8 +62,10 @@ socket.on('typing', (user) => {
 //Displaying online users
 socket.on('online-users', (data) =>{
     users.innerHTML = ''
+    var myArray =['🐧','👻','💀','🎃','👀','😎','😈','😴','🤧']
+    var random = myArray[(Math.random()*myArray.length) | 0]
     data.forEach(user => {
-        users.innerHTML += `<p>${user}</p>`
+        users.innerHTML += `<p> ${random} ${user}</p>`
     });
 })
 

@@ -73,8 +73,12 @@ router.get('/userdisplay',authRole("admin"), ensureAuthenticated,(req, res)=>{
 
 //detail page of products
 router.get('/detail/:id',ensureAuthenticated ,(req,res) =>{
-  Comlist.find({comment: {$exists: true}, post : req.params.id}, function(err, data) {
-    Post.findById(req.params.id,function(err, post) {
+  Comlist.find({comment: {$exists: true}, post : req.params.id}, {},
+    {sort: {_id: -1}},
+    function(err, data) {
+    Post.findById(req.params.id, {},
+      {sort: {_id: -1}},
+      function(err, post) {
       res.render('projectdetail',{
         post: post,
         user: req.user,
@@ -171,6 +175,9 @@ router.post('/personedit/:id', (req, res) => {
   const name = req.body.name;
   const role = req.body.role;
   const avata = req.body.avata;
+  const field = req.body.field;
+  const major = req.body.major;
+  const minor = req.body.minor;
   let errors = [];
 
   
@@ -188,6 +195,9 @@ router.post('/personedit/:id', (req, res) => {
       name,
       email,
       avata,
+      field,
+      major,
+      minor,
     });
   } else {
        Banlist.findOne({ banemail : email }).then(user => {
@@ -200,6 +210,9 @@ router.post('/personedit/:id', (req, res) => {
           user.name = req.body.name;
           user.email = req.body.email;
           user.avata = req.body.avata;
+          user.field = req.body.field;
+          user.major = req.body.major;
+          user.minor = req.body.minor;
           let query = {_id:req.params.id}
           let comlist ={};
           let query1 = {account: req.user.email}
@@ -441,10 +454,23 @@ router.get('/chatme', ensureAuthenticated,(req, res) =>
   res.render('chat.ejs')
 );
 
-
 router.get('/profile/:id',ensureAuthenticated,(req, res)=>{
-  res.render('userprofile.ejs',{
-    user: req.user,
+  User.find({_id: req.params.id}).select('-_id email').exec(function(err, data) {
+    var profile = data.map(({email})=>email);
+
+    Post.find({creator: profile[0]}, function (err, display){
+      res.render('userprofile.ejs', {
+        user: req.user,
+        post: req.post,
+        posts: display,
+      })
+      
+    })
+
   })
+  
 })
+
+
+
 module.exports = router;

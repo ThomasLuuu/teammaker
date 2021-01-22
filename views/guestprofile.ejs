@@ -11,7 +11,6 @@
                 <ul>
                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                     <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="/personedit/<%= user.id%>"><i class="fas fa-cog"></i></a></li>
                 </ul>
             </div>
             <div class="main_info">
@@ -44,9 +43,7 @@
                     <div class="data">
                         <h4>Recent</h4>
                         <p>(Recent activities here)</p>
-                        <% posts.forEach(function (post) {%>
-                            <p><%=post.course%> at <%=post.classtime%></p>
-                            <%}) %>
+                        
 
                         <br><br></br></p>
                         <h4>Courses taken</h4>

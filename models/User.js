@@ -18,6 +18,15 @@ const UserSchema = new mongoose.Schema({
   avata:{
     type:String,
   },
+  field:{
+    type:String,
+  },
+  major:{
+    type:String,
+  },
+  minor:{
+    type:String,
+  },
   date: {
     type: Date,
     default: Date.now

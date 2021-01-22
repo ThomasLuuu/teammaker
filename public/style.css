@@ -50,7 +50,15 @@ button {
 }
 
 .roomshow {
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eceab34c-345e-4395-8e7a-05b0d9f05a6b/de6e5qa-edad05cf-e7ff-4d98-bbaa-f02963c2c712.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWNlYWIzNGMtMzQ1ZS00Mzk1LThlN2EtMDViMGQ5ZjA1YTZiXC9kZTZlNXFhLWVkYWQwNWNmLWU3ZmYtNGQ5OC1iYmFhLWYwMjk2M2MyYzcxMi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.-zfh6D2pGNIconX1urILgv2OBe34S03F-v7ZjH7Ec5I");
+  background-image: url("https://lh3.googleusercontent.com/o0RAhq9eX15qFUeD7wVzFv9e7PuPp0Odb5izV9RNs61xgTG2vdfzfZbe4hH9-iOl2fwEKo7KakaND_o-6wdE4datEw=w640-h400-e365-rj-sc0x00ffffff");
+  /* Center and scale the image nicely */
+  background-position: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .fields {
