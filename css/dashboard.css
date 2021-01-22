@@ -5,10 +5,10 @@ figure.snip0056 {
     font-family: 'Raleway', Arial, sans-serif;
     position: relative;
     overflow: hidden;
-    margin: 10px;
-    min-width: 380px;
-    max-width: 480px;
-    width: 100%;
+    /* min-width: 380px; */
+    width: 480px;
+    height: 290px;
+    /* width: 100%; */
     background: whitesmoke;
     color: #000000;
     border-radius: 1rem;
@@ -35,6 +35,7 @@ figure.snip0056 {
     float: right;
     right: -15%;
     z-index: 1;
+    height: 238px;
   }
 
   figure.snip0056 figcaption {

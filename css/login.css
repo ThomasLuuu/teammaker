@@ -58,8 +58,9 @@
   background-image: url("https://www.rmit.edu.au/content/dam/rmit/rmit-images/staff-site/our-rmit/Indigenous-engagement/Bundyi-Girri-Background.jpg");
   height: 100%;
   width: 100%;
+  position: absolute;
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position: relative;
   background-repeat: no-repeat;
   background-size: unset;
   left: 0;

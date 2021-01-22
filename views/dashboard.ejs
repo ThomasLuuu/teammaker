@@ -61,10 +61,11 @@
             <a href="/addfavlist/<%= user.id%>/<%= post.id%>" class="btn btn-secondary" style="width: 75%;">Add to
               favorite</a>
           </div>
-        </figcaption><img src="https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png"
-          alt="Profile picture" />
+        </figcaption><img src="<%= post.photo %>"
+          alt="Profile picture"/>
         <div class="position"><%= post.course %></div>
       </figure>
     <%}) %>
   </div>
-</div>
+</div> 
+<!-- https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png -->
