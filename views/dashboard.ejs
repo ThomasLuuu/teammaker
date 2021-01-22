@@ -54,8 +54,7 @@
     <% posts.forEach(function (post) {%>    
       <figure class="snip0056">
         <figcaption>
-          <h2>Sample Student Name</h2>
-          <p class="card-text"><%= post.creator %></p>
+          <h2><%= post.creator %></h2>
           <p class="card-text"><%= post.classtime  %></p>
           <div class="icons">
             <a href="/detail/<%= post.id%> " class="btn btn-danger" style="width: 75%; margin-bottom: 10px;">Detail</a>

@@ -1,55 +1,69 @@
 .login-dark {
-    height: 1000px;
-    /* background: #475d62 url(../../assets/img/star-sky.jpg); */
-    background-size: cover;
-    /* position: relative; */
-  }
+  height: 1000px;
+  /* background: #475d62 url(../../assets/img/star-sky.jpg); */
+  background-size: cover;
+  /* position: relative; */
+}
 
-  .login-dark form {
-    max-width: 320px;
-    width: 90%;
-    background-color: #b8b9b9;
-    padding: 40px;
-    border-radius: 4px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #fff;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
-  }
+.login-dark form {
+  max-width: 320px;
+  width: 90%;
+  background-color: #b8b9b9;
+  padding: 40px;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+}
 
-  .login-dark .illustration {
-    text-align: center;
-    padding: 15px 0 20px;
-    font-size: 100px;
-    color: #2980ef;
-  }
+.login-dark .illustration {
+  text-align: center;
+  padding: 15px 0 20px;
+  font-size: 100px;
+  color: #2980ef;
+}
 
-  .login-dark form .form-control {
-    background: none;
-    border: none;
-    border-bottom: 1px solid #434a52;
-    border-radius: 0;
-    box-shadow: none;
-    outline: none;
-    color: inherit;
-  }  
+.login-dark form .form-control {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+}
 
-  .login-dark form .forgot {
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    opacity: 0.7;
-    color: black;
-  }
+.login-dark form .forgot {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.7;
+  color: black;
+}
 
-  .login-dark form .forgot:hover,
-  .login-dark form .forgot:active {
-    opacity: 1;
-    text-decoration: none;
-  }
+.login-dark form .forgot:hover,
+.login-dark form .forgot:active {
+  opacity: 1;
+  text-decoration: none;
+}
 
-  .login-dark form .btn-danger:active {
-    transform: translateY(1px);
-  }
+.login-dark form .btn-danger:active {
+  transform: translateY(1px);
+}
+
+.welcomepage {
+  background-image: url("https://www.rmit.edu.au/content/dam/rmit/rmit-images/staff-site/our-rmit/Indigenous-engagement/Bundyi-Girri-Background.jpg");
+  height: 100%;
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: unset;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

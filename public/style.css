@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(231, 216, 228);
+  /* background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eceab34c-345e-4395-8e7a-05b0d9f05a6b/de6e5qa-edad05cf-e7ff-4d98-bbaa-f02963c2c712.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWNlYWIzNGMtMzQ1ZS00Mzk1LThlN2EtMDViMGQ5ZjA1YTZiXC9kZTZlNXFhLWVkYWQwNWNmLWU3ZmYtNGQ5OC1iYmFhLWYwMjk2M2MyYzcxMi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.-zfh6D2pGNIconX1urILgv2OBe34S03F-v7ZjH7Ec5I"); */
 }
 /* -------------- room.ejs -------------- */
 
@@ -28,6 +28,29 @@ button {
   outline: none;
   cursor: pointer;
   border: none;
+}
+.roomlogin {
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eceab34c-345e-4395-8e7a-05b0d9f05a6b/de6e5qa-edad05cf-e7ff-4d98-bbaa-f02963c2c712.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWNlYWIzNGMtMzQ1ZS00Mzk1LThlN2EtMDViMGQ5ZjA1YTZiXC9kZTZlNXFhLWVkYWQwNWNmLWU3ZmYtNGQ5OC1iYmFhLWYwMjk2M2MyYzcxMi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.-zfh6D2pGNIconX1urILgv2OBe34S03F-v7ZjH7Ec5I");
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.loginfont {
+  font-family: Arial, Helvetica, sans-serif;
+  color: aliceblue;
+}
+
+.roomshow {
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eceab34c-345e-4395-8e7a-05b0d9f05a6b/de6e5qa-edad05cf-e7ff-4d98-bbaa-f02963c2c712.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWNlYWIzNGMtMzQ1ZS00Mzk1LThlN2EtMDViMGQ5ZjA1YTZiXC9kZTZlNXFhLWVkYWQwNWNmLWU3ZmYtNGQ5OC1iYmFhLWYwMjk2M2MyYzcxMi5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.-zfh6D2pGNIconX1urILgv2OBe34S03F-v7ZjH7Ec5I");
 }
 
 .fields {

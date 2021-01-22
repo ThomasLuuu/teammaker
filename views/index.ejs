@@ -7,9 +7,11 @@
     <title>Chat App</title>
 </head>
 <body>
+<section class="roomlogin">
     <div class="content">
+        <p class="loginfont">Welcome to Chat App</p>
+
         <div>
-            <p>Welcome to Chat App</p>
             <form action="/room" method="POST">
                 <input type="text" placeholder="Enter your Name" class="username" name="username" value="<%= user.name%>" required>
                 <input type="text" placeholder="Enter Room Name" class="roomname" name="roomname" required>
@@ -17,5 +19,6 @@
             </form>
         </div>
     </div>
+</section>
 </body>
 </html>

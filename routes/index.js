@@ -27,7 +27,9 @@ router.get('/', forwardAuthenticated, (req, res)=>{
 });
 // Dashboard
 router.get('/dashboard', ensureAuthenticated,(req, res)=>{
-      Post.find({course: {$exists: true}}, function(err, data){
+      Post.find({course: {$exists: true}}, {},
+        {sort: {_id: -1}},
+        function(err, data){
         res.render('dashboard.ejs',{
           post  :req.post,
           posts  : data,
@@ -39,12 +41,14 @@ router.get('/dashboard', ensureAuthenticated,(req, res)=>{
 
 //Dashboard for admin
 router.get('/dashboardadmin',authRole("admin"), ensureAuthenticated,(req, res)=>{
-  Post.find({course: {$exists: true}}, function(err, data){
+  Post.find({course: {$exists: true}}, {},
+    {sort: {_id: -1}},
+    function(err, data){
     res.render('dashboardadmin.ejs',{
-      user  :req.user,
-      users  : data,
       post  :req.post,
       posts  : data,
+      user: req.user,
+      users: data,
     });
   });
 });
