@@ -119,3 +119,9 @@ figure.snip0056 {
   figure.snip0056.hover>img {
     right: -12%;
   }
+
+  form {
+    position: absolute; 
+    left: 40%; 
+    right: 40%;
+  }

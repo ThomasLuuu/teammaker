@@ -23,6 +23,12 @@
     <h1 class="title">
       Dashboard
     </h1>
+    <form action="search/keyword" method="GET" class="form-inline my-2 my-lg-0" style="">
+      <label for="keyword"></label>
+      <input name="keyword" class="form-control mr-sm-2" id="keyword" type="text" placeholder="Search User name"
+        aria-label="Search">
+      <input class="btn btn-success" type="submit"></input>
+    </form>
     <div class="dropdown" style="z-index: 1; margin-right: 10px;">
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Adjust view
       </button>
@@ -51,21 +57,20 @@
     </div>
     <%}) %> -->
 
-    <% posts.forEach(function (post) {%>    
-      <figure class="snip0056">
-        <figcaption>
-          <h2><%= post.creator %></h2>
-          <p class="card-text"><%= post.classtime  %></p>
-          <div class="icons">
-            <a href="/detail/<%= post.id%> " class="btn btn-danger" style="width: 75%; margin-bottom: 10px;">Detail</a>
-            <a href="/addfavlist/<%= user.id%>/<%= post.id%>" class="btn btn-secondary" style="width: 75%;">Add to
-              favorite</a>
-          </div>
-        </figcaption><img src="<%= post.photo %>"
-          alt="Profile picture"/>
-        <div class="position"><%= post.course %></div>
-      </figure>
+    <% posts.forEach(function (post) {%>
+    <figure class="snip0056">
+      <figcaption>
+        <h2><%= post.creator %></h2>
+        <p class="card-text"><%= post.classtime  %></p>
+        <div class="icons">
+          <a href="/detail/<%= post.id%> " class="btn btn-danger" style="width: 75%; margin-bottom: 10px;">Detail</a>
+          <a href="/addfavlist/<%= user.id%>/<%= post.id%>" class="btn btn-secondary" style="width: 75%;">Add to
+            favorite</a>
+        </div>
+      </figcaption><img src="<%= post.photo %>" alt="Profile picture" />
+      <div class="position"><%= post.course %></div>
+    </figure>
     <%}) %>
   </div>
-</div> 
+</div>
 <!-- https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png -->
