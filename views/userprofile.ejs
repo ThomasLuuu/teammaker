@@ -3,6 +3,8 @@
 <% include ./header %>
 
 <div class="main">
+    <% users.forEach(function (user) {%>
+
     <div class="wrapper">
         <div class="left">
             <img src="<%= user.avata%>"
@@ -56,4 +58,6 @@
             </div>
         </div>
     </div>
+    <%}) %>
+
 </div>

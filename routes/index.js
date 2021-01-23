@@ -407,9 +407,10 @@ router.get('/search/keyword', function(req, res){
 
 router.post('/addproject/:id', (req, res) => {
   User.findById(req.params.id, function(err, user){
-    User.find({_id: req.params.id}).select('-_id email').exec(function(err, result){
+    User.find({_id: req.params.id}).select('_id email').exec(function(err, result){
       var postor = result.map(({email})=>email)
-      const { course, classtime, GPA, creator, requirement, photo } = req.body;
+      var idget = result.map(({_id})=>_id)
+      const { course, classtime, GPA, creator, creatorid, requirement, photo } = req.body;
       let errors = [];
       if ( !course || !classtime || !GPA || !requirement ) {
         errors.push({ msg: 'Please enter all fields' });
@@ -421,6 +422,7 @@ router.post('/addproject/:id', (req, res) => {
           classtime,
           GPA,
           creator,
+          creatorid,
           requirement,
           photo
         });
@@ -430,6 +432,7 @@ router.post('/addproject/:id', (req, res) => {
               classtime,
               GPA,
               creator : postor[0],
+              creatorid:idget[0],
               requirement,
               photo
             });
@@ -460,11 +463,35 @@ router.get('/profile/:id',ensureAuthenticated,(req, res)=>{
   User.find({_id: req.params.id}).select('-_id email').exec(function(err, data) {
     var profile = data.map(({email})=>email);
 
-    Post.find({creator: profile[0]}, function (err, display){
-      res.render('userprofile.ejs', {
-        user: req.user,
-        post: req.post,
-        posts: display,
+    User.find({_id: req.params.id}, function(err, us) {
+      Post.find({creator: profile[0]}, function (err, display){
+        res.render('userprofile.ejs', {
+          user: req.user,
+          users: us,
+          post: req.post,
+          posts: display,
+        })
+        
+      })
+      
+    })
+
+  })
+  
+})
+router.get('/guestprofile/:id',ensureAuthenticated,(req, res)=>{
+  User.find({_id: req.params.id}).select('-_id email').exec(function(err, data) {
+    var profile = data.map(({email})=>email);
+
+    User.find({_id: req.params.id}, function(err, us) {
+      Post.find({creator: profile[0]}, function (err, display){
+        res.render('guestprofile.ejs', {
+          user: req.user,
+          users: us,
+          post: req.post,
+          posts: display,
+        })
+        
       })
       
     })

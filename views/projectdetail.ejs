@@ -86,7 +86,7 @@
           <td><%= post.course %></td>
           <td><%= post.classtime %></td>
           <td><%= post.GPA %></td>
-          <td><%= post.creator %></td>
+          <td onclick="window.location='/guestprofile/<%=post.creatorid%>'"><%= post.creator %></td>
           <td><%= post.requirment %></td>
           <!-- <td>
             <a href="/edits/<%= post.id%> " class="btn btn-danger">Edit</a>

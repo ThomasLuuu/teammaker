@@ -3,10 +3,12 @@
 <% include ./header %>
 
 <div class="main">
+    <% users.forEach(function (user) {%>
+
     <div class="wrapper">
         <div class="left">
             <img src="<%= user.avata%>"
-                alt="user" width="250">
+                alt="user">
             <div class="social_media">
                 <ul>
                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -43,7 +45,9 @@
                     <div class="data">
                         <h4>Recent</h4>
                         <p>(Recent activities here)</p>
-                        
+                        <% posts.forEach(function (post) {%>
+                            <p><%=post.course%> at <%=post.classtime%></p>
+                            <%}) %>
 
                         <br><br></br></p>
                         <h4>Courses taken</h4>
@@ -53,4 +57,6 @@
             </div>
         </div>
     </div>
+    <%}) %>
+
 </div>

@@ -6,6 +6,9 @@ const PostSchema = new mongoose.Schema({
   creator:{
     type:String,
 },
+creatorid:{
+  type: String,
+},
 course: {
   type: String,
 },
