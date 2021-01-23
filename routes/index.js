@@ -392,10 +392,12 @@ router.post('/cmt/:id/:idpost', (req, res) => {
 
 router.get('/search/keyword', function(req, res){
   
-  Post.find({name: req.query.keyword}, function(err, data){
+  Post.find({creator: req.query.keyword}, function(err, data){
     res.render('dashboard.ejs',{
-      post :req.user, //user
-      posts :data     //users
+      post  :req.post,
+      posts  : data,
+      user: req.user,
+      users: data,
     });
   });
 });
