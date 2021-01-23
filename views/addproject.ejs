@@ -35,14 +35,21 @@
           </div>
           <div class="form-group">
             <label for="GPA">Aiming Score</label>
-            <input
-              type="GPA"
-              id="GPA"
-              name="GPA"
-              class="form-control"
-              placeholder="Enter your aiming score"
-              value="<%= typeof GPA != 'undefined' ? GPA : '' %>"
-            />
+            
+            <select name="GPA" id="GPA" class="form-control" >
+              <option value="HD">
+                HD
+              </option>
+              <option value="DI-HD">
+                DI-HD
+              </option>
+              <option value="CR-DI">
+                CR-DI
+              </option>
+              <option value="PA-CR">
+                PA-CR
+              </option>
+            </select>
           </div>
           <div class="form-group">
             <label for="requirement">Requirement</label>
