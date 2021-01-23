@@ -47,9 +47,9 @@ body{
 
 
 .wrapper .left img{
-  border-radius: 150px;
+  border-radius: 50%;
   margin-bottom: 470px;
-  width: 250px;
+  width: 170px;
   height: 170px;
 }
 
